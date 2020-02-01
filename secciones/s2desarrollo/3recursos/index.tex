@@ -12,14 +12,56 @@ Es un framework que se aprovecha de la usabilidad de Kotlin para el desarrollo d
 
     \subsection{Koin DI}
 
-Koin es un inyectorr de dependencias compatible con Kotlin, siendo bastante util para poder aplicar el principio de inversión de dependencias en el desarrollo del backend.    
+Koin es un inyector de dependencias compatible con Kotlin, siendo bastante util para poder aplicar el principio de inversión de dependencias en el desarrollo del backend. 
+La configuración de este inyector de dependencias es bastante simple, teniendo una sintaxis sencilla y útil en la que únicamente hay que utilizar Kotlin evitando los ficheros de configuración en XML que obligan otros tipos de inyectores.
+La utilización de este framework será util para poder aislar los casos de uso del sistema, de modo que no tengan dependencia de ninguna otra clase u servicio externo a los casos de uso, aumentando la escalabilidad del sistema y permitiendo una extensibilidad de los casos de uso en un futuro.
 
     \subsection{OAuth 2.0}
     
+OAuth 2.0 es un protocolo que establece las pautas para una conexión segura entre un servidor y un cliente.
+Este protocolo se basa en la implementación de un servidor de tokens frente al cual hay que estar identificado.
+El caso de uso se basa en varios pasos:
+\begin{enumerate}
+        \item El usuario manda sus credenciales al sistema.
+        \item El sistema comprueba que sus credenciales son correctas.
+        \item El sistema solicita al servidor OAuth un nuevo inicio de sesión para un cierto usuario con las ciertas características.
+        \item EL servidor OAuth provee al sistema un conjunto de token temporales: uno de acceso que utiliazará el usuario para identificarse, y otro de refresco para que recupere el de acceso en caso de que se le caduque.
+        \item El sistema devuelve los tokens al usuario
+    \end
+Una vez que el usuario ya dispone de los tokens, simplemente tiene que realizar las peticiones normales pero introducciendo el token de acceso en la cabecera de autorización en cada llamada, de modo que el sistema lo toma, comprueba contra el servidor OAuth2.0 que sigue siendo válido, y en caso de serlo, deja realizar al usuario la petición.
+Para la implementación de este protocolo, utilizaremos un framework para Ktor. \textbr{MYNDOCS*******}
+Este framework será adaptado a las características de uso del sistema, estableciendo el método de comprobación de credenciales oportuno. 
+
     \subsection{Exposed SQL}
+
+Exposed SQL es un framework que simplifica el acceso a la base de datos evitando las consultas puras de SQL mediante una sintaxis más simple que tiene definida en su \textbr{DSL******}.
+El uso principal de este framework es su facilidad para parsear los resultados obtenidos en cada consulta, al igual que limitar los posibles ataques por \textbr{inyección de SQL*****}.
+
     \subsection{JSoup}
-    \subsection{Postgres}
+
+JSoup es una librería que permite la obtención del código fuente HTML resultante de sitios web, dando las herramientas necesarias para la captura y parseo de los diferentes valores en función de las etiquetas, clases, y jerarquía de los distintos elementos HTML obtenidos.
+    
+    \subsection{PostgreSQL}
+También conocido como postgres, es un sistema de gestión de bases de datos relacionales, por lo que permite una orientación a objectos en las relaciones de los elementos contenidos en sus diferentes tablas.
+Postgres es libre y de código abierto, lo que nos permite su uso en el proyecto.
+
     \subsection{VueJS}
+
+VueJS es un framework JavaScript que permite la creación y desarrollo de diferentes aplicaciones web.
+Entre sus ventajas está su reactividad, permitiendo cambiar la información mostrada en la web de manera dinámica, evitando tener que recargar la páginas. Otro aspecto por el cual elegir este framework está en su simplicidad para crear e importar componentes, al igual que para enviar la información entre ellos.
+Otro aspecto importante por el cual se ha elegido es su modularidad: VueJS parte de cero, de modo que toda función de la que queramos disponer, simplemente tendrá que ser importada, pudiendo adaptar cualquier librería JS facilmente. Esto permite un mayor acceso a todas las librerias existentes, al igual que la creación de un proyecto de menor peso, ya que solo dispone de las librerias que son necesarias.
+El aspecto más importante por el cual VueJS está siendo utilizado es su curva de aprendizaje en la que todo el mundo concuerda: es más facil de aprender a utilizar que sus principales competidores entre los cuales se encuentra Angular y React.
+
+
     \subsection{Bootstrap-vue}
+
+Bootstrap-vue es una adaptación de la librería de componentes Bootstrap que permite la utilización de sus componentes en VueJS de una manera más simple y rápida.
+
     \subsection{Leaflet}
+
+Leaflet es una biblioteca JavaScript basada en OpenMaps, permitiendo la utilización e implementación de mapas en nuestras páginas web de una manera gratuita gracias a ser OpenSource
+Leaflet tiene un gran desarrollo por parte de la comunidad para la implementación de diferentes funciones, como puede ser la adición de cualquier tipo de marca en el mapa, la geocodificación a través de los atributos de un punto exacto como puede ser su calle o código postal, y permitiendo también la geocodificación inversa, obteniendo los datos de un punto exacto a partir de los coordenadas.
+
     \subsection{Material icons}
+
+Es la librería de iconos gratuíta de Google, la cual sigue los estilos de diseño de Material Design, basada en un estilo limpio y simple.
