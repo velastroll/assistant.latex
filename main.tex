@@ -35,10 +35,10 @@
 
 
 
-\date{16 de marzo de 2016}
-\author{Tú}
+\date{21 de Enero de 2020}
+\author{Velasco Gil, Álvaro}
 
-\title{TFG: Plantilla}
+\title{TFG: titulo}
 
 \begin{document}
 
@@ -64,21 +64,21 @@
 \end{large}
 \vspace*{0.2in}
 \textbf{ GRADO EN INGENIERÍA INFORMÁTICA}\\
-\textbf{ MENCIÓN EN *algo, no?* }
-\vspace*{0.5in}
+\textbf{ MENCIÓN EN INGENIERÍA DEL SOFTWARE }
+\vspace*{0.1in}
 \rule{140mm}{0.1mm}\\
-\vspace*{0.3in}
+\vspace*{0.2in}
 \begin{large}
-\textbf{{\LARGE Fantástica plantilla para hacer TFGs con \LaTeX\\}}
+\textbf{{\LARGE DISEÑO E IMPLEMENTACIÓN DE UN SISTEMA DE CONTROL Y MONITORIZACIÓN DE ASISTENTES POR VOZ\\}}
 \end{large}
-\vspace*{0.6in}
+\vspace*{0.2in}
 \rule{140mm}{0.1mm}\\
 \vspace*{2in}
 \begin{large}
 \begin{flushright}
-\textbf{Alumno/a: Alguien \\
+\textbf{Alumno: Velasco Gil, Álvaro \\
 \vspace*{0.3in}
-Tutor/es/as: }
+Tutor: Vegas, Jesús }
 \end{flushright}
 \end{large}
 \end{center}
@@ -107,10 +107,13 @@ Pequeña dedicatoria.}
 \markboth{RESUMEN}{RESUMEN} % encabezado
 \begin{flushleft}
 
+El fin de este proyecto es el de crear un sistema capaz de monitorizar y controlar remotamente diferentes dispositivos que serán utilizados como asistentes.
+
+Para el desarrollo de este proyecto se ha utilizado diferentes lenguajes, como Kotlin en el backend, Python en los dispositivos, y VueJS, HTML y CSS en la frontend, siguiendo un plan basado en iteraciones.
+
 % Aquí el resumen
 
 \end{flushleft}
-
 
 \chapter*{Abstract} % si no queremos que añada la palabra "Capitulo"
 \addcontentsline{toc}{chapter}{Abstract} % si queremos que aparezca en el índice
@@ -127,22 +130,37 @@ Pequeña dedicatoria.}
 \addcontentsline{toc}{chapter}{Lista de figuras} % para que aparezca en el indice de contenidos
 \listoffigures % indice de figuras
 
+Aquí aparecerá la lista de imagenes que hay en el TFG
+
 \cleardoublepage
 \addcontentsline{toc}{chapter}{Lista de tablas} % para que aparezca en el indice de contenidos
 \listoftables % indice de tablas
 
+Aquí aparecerá la lista de tablas que hay en el TFG
+
 \chapter{Introducción}\label{cap.introduccion}
 \pagenumbering{arabic} % para empezar la numeración con números
-\input{./secciones/s0idea.tex}
+\input{./secciones/s1intro/index.tex}
+
+\chapter{Plan de desarrollo}\label{cap.plandes}
+\input{./secciones/s2desarrollo/index.tex}
 
 \chapter{Estado del arte}\label{cap.arte}
-\input{./secciones/s1arte.tex}
+\input{./secciones/s3arte/index.tex}
 
-\chapter{Líneas futuras}\label{cap.futuro}
-\input{./secciones/s4futuro.tex}
+\chapter{Diseño}
+\label{cap.desarrollo}
+\input{./secciones/s4diseño/index.tex}
 
-\chapter{Conclusiones}\label{cap.conclusiones}
-\input{./secciones/s5concluyo.tex}
+\chapter{Demo}\label{cap.demo}
+\input{./secciones/s4demo.tex}
+
+\chapter{Conclusión}\label{cap.conclusion}
+\input{./secciones/s5conclusion.tex}
+
+\chapter{Referencias}\label{cap.referencias}
+\input{./secciones/s6referencias.tex}
+
 
 \appendix
 
