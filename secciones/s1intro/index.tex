@@ -1,85 +1,26 @@
 \section{Introducción}
 
-El mundo está en constante evolución, lo que hace a las nuevas generaciones tender a ocupar trabajos que no estén relacionados con las zonas rurales. Esta tendencia está produciendo una despoblación en las zonas rurales ya que están ancladas a trabajos más relacionados con el sector primario, en el cual se queda la parte adulta y de la tercera edad de nuestra sociedad.
+En este proyecto se abordará el proceso de control y monitorización remota de dispositivos asistentes inteligentes.
 
-La migración de la sociedad más joven a ciudades con mayor potencial a la hora de buscar trabajo produce que en estas localidades se quede la gente de la tercera edad sola, que con el paso de los años va perdiendo el contacto y necesitan interación humana.
+Tras la lectura de este documento se comprenderán tanto los motivos por los cuales se ha decidido tomar esta opción, como el proceso de despliegue del sistema, pasando por las fases de implementación en las que se enseñará a replicar proyectos de estructura similiar, como por las fases de desarrollo en la cuales se estudian los posibles riesgos y carácterísticas del proyecto, al igual que por el plan de desarrollo en el que se programa toda la elaboración.
 
-El aumento de la despoblación, por tanto, nos lleva a una situación en que personas de avanzada edad están menos protegidas en sus casas, o tienen una menor interacción con el resto de familiares o personas.
+\section{Motivación}
 
-Por otro lado, los asistentes inteligentes por comandos de voz están buscando un hueco en todo hogar. Estos asistentes nos hacen la vida más sencilla, ayudando a actualizar y controlar toda la domótica de nuestras casas.
+Los asistentes inteligentes están en auge y las grandes empresas están dando acceso a estos servicios de manera gratuita, donde lo único que hay que hacer para disfrutar de ellos es pagar es el dispositivo físico, en caso de que se requiera, lo que hace cuestionar la idea del modelo de negocio que están siguiendo para que salga rentable.
 
-El concepto de asistentes de voz, que tan de moda está entre la población joven, junto con la gente de edad avanzada que necesita interacción en sus vidas puede ser una combinación perfecta para ayudarles a no perder el contacto con la sociedad.
+Este modelo de negocio hace pensar que el producto en realidad es cada usuario que lo utiliza, del que están recopilando información. Esta información al ser obtenida directamente de los hogares de cada usuario no es solamente privada, si no que también es íntima, lo que hace cuestionarse si realmente la comunidad de usuarios sabe que hay empresas aprovechándose de su día a día para recolectar toda la información mediante esos dispositivos que, situados en los lugares más personales de cada usuario, capturan información con gran potencial, ya sea sobre gustos, tendencias, necesidades o inclinaciones políticas, pudiendo todos estos datos estar siendo vendidos, o utilizados por terceros.
 
-La creación de un asistente que pueda resolver sus dudas, con el que puedan hablar, al que puedan preguntar a qué hora es la partida de cartas en el bar, o al que puedan pedir auxilio en caso de una caída, puede ser de gran utilidad
-para mejorar su día a día, al igual que el resto de familiares pueda controlar que están bien.
+Esta ignorancia global sobre el tratamiento de los datos obtenidos por el dispositivo hace replantear la posibilidad de creacción de un nuevo dispositivo asistente, el cual haga más facil la vida de un sesgo de la sociedad al cual iría orientado, sin tener la necesidad ni posibilidad de almacenar datos de carácter sensible.
 
-Pero el auge de los dispositivos asistentes pone en vilo la gestión de la privacidad e intimidad que hay dentro de nuestras casas debido a que pueden recolectar información a través de escuchar las conversaciones de nuestro día a día, siendo información que no sabemos a dónde va a parar, qué se va a hacer con ella, o si incluso puede llegar a estar siendo vendida.
+Por otro lado, la despoblación y migración por la parte joven de la sociedad está provocando una despobación en sus lugares de origen, dejando a los familiares de mayor edad en soledad, siendo la parte de la familia que a grosso modo necesita más atención y requiere más ayuda para pasar el día.
 
-Esto nos da una motivación para la creación de un asistente que no esté conectado constantemente a internet y tampoco almacene datos de carácter sensible de los usuarios, sino que simplemente interaccione con cada persona, y la ayude en su día a día.
+La implementación de un asistente inteligente el cual ayude a este conjunto de la sociedad a entretenerse proponiendo tanto eventos cercanos a ellos, como respondiendo sus dudas de una manera rápida, o sirviéndoles para buscar ayuda en caso de posible caída o solicitud de auxilio, puede ser una gran herramienta que mejore sus calidades de vida.
 
 
 \section{Objetivos}
 
-El objetivo de este proyecto es el despliegue de un sistema que permita la conexión de dispositivos asistentes al servidor de manera automática y remota, pudiendo ser controlados desde una web de administración, al igual que pudiendo ver estadísticas de uso para comprobar el estado de los usuarios. 
+El objetivo de este proyecto es, por tanto,xs el despliegue de un sistema que permita la conexión de dispositivos asistentes al servidor de manera automática y remota, pudiendo ser controlados desde una web de administración, al igual que pudiendo ver estadísticas de uso para comprobar el estado de los usuarios. 
 
-Estos dispositivos estarán orientados a personas de la tercera edad, estando asignado cada dispositivo a una persona, y conteniendo entonces información del localidad a la hora de responder.
+Estos dispositivos estarán orientados a personas de la tercera edad, estando asignado cada dispositivo a una persona, y conteniendo entonces información relacionada con la localidad a la hora de responder.
 
 Los dispositivos podrán entonces ser controlados y configurados de manera individual, en función de su localidad, o de una manera global, pudiendo enviar actualizaciones a través de configuraciones, al igual que mandar la realización de diferentes acciones.
-
-\section{Alternativas}
-
-Para la realización de este proyecto se ha considerado previamente las alternativas robustas del mercado, pero fijándonos principalmente en dos aspectos que son los más importantes:
- \begin{enumerate}
-     \item Si es necesaria una conexión a Internet.
-     
-La idea principal de este proyecto es orientarlo a personas de la tercera edad, por lo que es muy poco probable que dispongan de un servicio de conexión a internet en sus respectivos hogares. Por tanto, un asistente que necesite estar permanentemente conectado no podría ser una opción válida.
-    \item El tratamiento de la información que obtienen.
-
-La información que pueda almacenar un dispositivo al estar constantemente conectado y escuchando puede no ser simplemente de un carácter privado, sino también de un carácter íntimo, por lo que se ve necesario el uso de un dispositivo que no guarde nuestra información, ni la información de las personas que nos importan.
-
- \end{enumerate}
-
-\subsection{Google Assistant}
-
-El asistente de Google sería una muy buena opción ya que otorga una librería para la implementación de nuestro propio asistente en diferentes máquinas, y es sabido el gran potencial que tiene a través de su herramienta Google Home para configurar diferentes aparatos de la domótica del hogar, al igual que para la creación de rutinas.
-
-Las rutinas son tareas que se repiten al cumplirse su accionador, que puede ser tanto un comando de voz, una hora específica, o diferentes acciones con dispositivos asociados.
-
-Por contra, es necesario que el dispositivo esté conectado a internet para poder realizar todas estas acciones, al igual que no tenemos el control ni somos conscientes de todos los datos que están almacenando en segundo plano.
-
-\subsection{Amazon Echo}
-
-También conocido como Alexa, es la opción creada por Amazon que más fuerza está tomando en la sociedad para ser elegida como la asistente de voz inteligente que nos acompañe en nuestro día a día.
-
-A pesar de todas las ventajas posibles, que comparte con el asistente de Google, también comparte sus contras, por lo que es otra opción que va a ser rechazada.
-
-\subsection{Snips Seed}
-
-Snips Seeed es una  plataforma de inteligencia artificial para el desarrollo de dispositivos asistentes.
-
-Esta plataforma nos permite crear nuestro propio asistente basandose en un entrenamiento previo con unos hechos predefinidos por el desarrollador.
-
-Tras la implementación, el asistente ya ha sido entrenado, por lo cual no necesita estar más conectado a internet. Punto a favor.
-
-En cuanto a su uso, el dispositivo solamente escucha el ambiente comprobando si recibe unas palabras exactas, que corresponden a un comando establecido previamente, al que se llama ‘hotword‘. 
-Este hotword puede ser modificado por cualquier otra palabra que deseemos, lo cual beneficia a que en nuestro proyecto se pueda asignar una palabra más acorde a las personas a quienes va orientado.
-
-El asistente, en cuanto a su configuración interna, solo nos escucha en el caso de que detecte previamente el hotword definido, transcribiendo lo escuchado gracias a un Speech-to-Text propio que genera una cadena de texto, la cual confronta con los hechos predefinidos gracias a su entrenamiento en el despliegue, identificanto un posible conjunto de hechos a los que correspondan nuestras palabras, de los cuales acaba eligiendo solamente el más similar a lo que considera escuchado.
-Este hecho confrontado, es enviado a travées de un puerto MQTT, y el dispositivo se queda a la espera de que se le ordene qué debe responder.
-A través del puerto MQTT, con un programa que hayamos dejado escuchando ese puerto, se puede capturar el hecho y actuar de una manera u otra en función de qué trate el hecho.
-Una vez que hayamos decidido, qué hacer con ese hecho, se reponde al asistente con una cadena de texto sobre qué debe decir, enviándola también por el puerto MQTT.
-Esta respuesta es capturada por el asistente, y retrransmitida por el altavoz del dispositivo.
-
-Como se puede ver, el tratamiento de la información que se le otorga al dispositivo es el que nosotros deseemos, ya que el asistente no envia nada al exterior. De esta manera, nosotros controlamos qué sucede con la información, siendo el otro punto requerido en la búsqueda de un asistente ideal.
-
-Como extra, Snips Seeed es una plataforma gratuita que se basa en una colaboración de una gran comunidad de desarrolladores. En esta comunidad hay una gran cantidad de aplicaciones ya disponibles como juegos, consulta del tiempo, consulta de noticias y demás para ser asignadas a directamente a nuestro dispositivo.
-
-\section{Propuesta final}
-
-La elección más acorde de entre todas las propuestas es el uso Snips Seeed, ya que se adapta a todos nuestros requisitos.
-
-En cuanto al proyecto, va a ser necesario el desarrollo de un dispositivo que contenga este asistente, al igual que el diseño y desarrollo de un backend capaz de albergar la información relativa a cada dispositivo.
-
-Para la gestión de estos dispositivos también será necesaria la implementación de una página web, desde la cual puedan ser los dispositivos configurados, manejados y controlados.
-
-La implementación operativa de todo este sistema formaría un proyecto de gran embergadura, por lo que en los siguientes capitulos se documentará el diseño y desarrollo del backend y del frontend, mostrando el control y gestión real de un dispositivo el cual su rango de funciones será breve, de modo que se establezca la base y se explique como puedan ser añadidas nuevas funciones de una manera simple y sencilla.

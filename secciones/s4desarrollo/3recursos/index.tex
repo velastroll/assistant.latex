@@ -1,0 +1,78 @@
+    \subsection{Kotlin}
+
+Kotlin es un lenguaje de programación funcional desarrollado por el equipo ruso de JetBrains como una evolución a Java por excelencia, permitiendo una interoperabilidad entre ambos, utilizándose bajo la JVM*******.
+
+La sintaxis de Kotlin lo hace más intuitivo y simple, llegando al mismo resultado que en Java pero en un menor número de líneas, ahorrando tiempo y espacio.
+
+Pese a que su gran popularidad es por el desarrollo Android, ahora está creciendo en su utilización en el lado del servidor gracias al framework de Ktor. 
+
+    \subsection{Ktor}
+
+Es un framework que se aprovecha de la usabilidad de Kotlin para el desarrollo de clientes y servidores asíncronos en la implementación de sistemas conectados.
+
+    \subsection{Koin DI}
+
+Koin es un inyector de dependencias compatible con Kotlin, siendo bastante util para poder aplicar el principio de inversión de dependencias en el desarrollo del backend. 
+
+La configuración de este inyector de dependencias es bastante simple, teniendo una sintaxis sencilla y útil en la que únicamente hay que utilizar Kotlin, evitando así los ficheros de configuración en XML que obligan a usar otros tipos de inyectores.
+
+La utilización de este framework será util para poder aislar los casos de uso del sistema, de modo que no tengan dependencia de ninguna otra clase u servicio externo a los casos de uso, aumentando la escalabilidad del sistema y permitiendo una extensibilidad de los casos de uso en un futuro.
+
+    \subsection{OAuth 2.0}
+    
+OAuth 2.0 es un protocolo que establece las pautas para una conexión segura entre un servidor y un cliente.
+Este protocolo se basa en la implementación de un servidor de tokens frente al cual hay que estar identificado.
+
+La secuencia correcta para la utilización de este protocolo consta de los siguientes pasos:
+
+\begin{enumerate}
+        \item El usuario manda sus credenciales al sistema.
+        \item El sistema comprueba que sus credenciales son correctas.
+        \item El sistema solicita al servidor OAuth un nuevo inicio de sesión para un cierto usuario con las ciertas características.
+        \item El servidor OAuth provee al sistema un conjunto de token temporales: uno de acceso que utiliazará el usuario para identificarse, y otro de refresco para que recupere el de acceso en caso de que se le caduque.
+        \item El sistema devuelve los tokens al usuario
+\end{enumerate}
+Una vez que el usuario ya dispone de los tokens, simplemente tiene que realizar las peticiones normales a los end-points***** del sistema pero introducciendo el token de acceso en la cabecera de autorización en cada llamada, de modo que el sistema lo toma, comprueba contra el servidor OAuth2.0 que sigue siendo un token válido, y en caso de serlo, deja realizar al usuario la petición.
+Para la implementación de este protocolo, utilizaremos un framework adaptado a la lógica de Ktor. \textbr{MYNDOCS*******}
+Este framework será adaptado a las características de uso del sistema, estableciendo el método de comprobación de credenciales oportuno. 
+
+    \subsection{Exposed SQL}
+
+Exposed SQL es un framework que simplifica el acceso a la base de datos evitando las consultas puras de SQL mediante una sintaxis más simple que tiene definida en su \textbr{DSL******}.
+El uso principal de este framework es su facilidad para parsear los resultados obtenidos en cada consulta, al igual que limitar los posibles ataques por \textbr{inyección de SQL*****}.
+
+    \subsection{JSoup}
+
+JSoup es una librería que permite la obtención del código fuente HTML resultante de sitios web, dando las herramientas necesarias para la captura y parseo de los diferentes valores en función de las etiquetas, clases, y jerarquía de los distintos elementos HTML obtenidos.
+    
+    \subsection{PostgreSQL}
+También conocido como postgres, es un sistema de gestión de bases de datos relacionales, por lo que permite una orientación a objectos en las relaciones de los elementos contenidos en sus diferentes tablas.
+Postgres es libre y de código abierto, lo que nos permite su uso en el proyecto.
+
+    \subsection{VueJS}
+
+VueJS es un framework JavaScript que permite la creación y desarrollo de diferentes aplicaciones web.
+Entre sus ventajas está su reactividad, permitiendo cambiar la información mostrada en la web de manera dinámica, evitando tener que recargar la página. 
+
+Otro aspecto por el cual elegir este framework está en su simplicidad para crear e importar componentes, al igual que para enviar la información entre ellos.
+
+También cabe destacar su modularidad: VueJS parte de cero, de modo que toda función de la que queramos disponer, simplemente tendrá que ser importada, pudiendo adaptar cualquier librería JavaSCript facilmente. Esto permite un mayor acceso a todas las librerias ya existentes, al igual que la creación de un proyecto con un menor peso final, al contener únicamente las librerias que son necesarias.
+
+El aspecto más importante por el cual VueJS está siendo utilizado es su curva de aprendizaje , característica con la que todo el mundo concuerda: es más facil de aprender a utilizar que sus principales competidores, entre los cuales se encuentran Angular y React.
+
+    \subsection{Bootstrap-Vue}
+
+Bootstrap-Vue es una adaptación de la librería de componentes Bootstrap que permite la utilización de sus componentes en VueJS de una manera más simple y rápida.
+
+    \subsection{Leaflet}
+
+Leaflet es una biblioteca JavaScript basada en OpenMaps, permitiendo la utilización e implementación de mapas en nuestras páginas web de una manera gratuita gracias a ser de código abierto****.
+
+Leaflet tiene un gran desarrollo por parte de la comunidad, lo que hace a esta librería más interesante para la implementación de diferentes funciones, como puede ser la adición de cualquier tipo de marca en el mapa, la geocodificación a través de los atributos de un punto exacto como puede ser su calle o código postal, y permitiendo también la geocodificación inversa, obteniendo esos datos de un punto exacto a partir de las coordenadas.
+
+    \subsection{Material icons}
+
+Es la librería de iconos gratuíta de Google, la cual sigue los estilos de diseño de Material Design, basada en un estilo limpio y simple.
+
+    \subsection{Astah UML}
+Es una herramienta cuya función es la creación de diagramas y esquemas UML, que nos será muy útil para realizar el diseño y organizar el desarrollo del sistema.
