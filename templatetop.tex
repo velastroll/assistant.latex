@@ -7,6 +7,13 @@
 \usepackage{fancyvrb}
 \usepackage{fancyhdr}
 \usepackage{wrapfig}
+\usepackage{array} % for defining a new column type
+\usepackage{varwidth} %for the varwidth minipage environment
+\newcolumntype{S}{>{\begin{varwidth}{2cm}}c<{\end{varwidth}}}
+\newcolumntype{M}{>{\begin{varwidth}{4cm}}c<{\end{varwidth}}}
+\newcolumntype{L}{>{\begin{varwidth}{6cm}}c<{\end{varwidth}}}
+\newcolumntype{X}{>{\begin{varwidth}{8cm}}c<{\end{varwidth}}}
+
 \setlength{\parskip}{10pt plus 1pt minus 1pt}
  % aqui definimos el encabezado de las paginas pares e impares.
 \rhead[]{}
