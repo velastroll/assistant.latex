@@ -1,3 +1,5 @@
+Para una correcta implementación que se adecúe a los requisitos, al igual que para un futuro manteniemiento del proyecto, enumerarán a continuación las herramientas que han sido utilizadas durante su desarrollo, con el fin de poder replicar en un futuro el entorno de trabajo en un futuro, o poder entender mejor cómo ha sido implementado.
+
     \subsection{Kotlin}
 
 Kotlin es un lenguaje de programación funcional desarrollado por el equipo ruso de JetBrains como una evolución a Java por excelencia, permitiendo una interoperabilidad entre ambos, utilizándose bajo la JVM*******.
@@ -34,8 +36,8 @@ La secuencia correcta para la utilización de este protocolo consta de los sigui
 \end{enumerate}
 Una vez que el usuario ya dispone de los tokens, simplemente tiene que realizar las peticiones normales a los end-points***** del sistema pero introducciendo el token de acceso en la cabecera de autorización en cada llamada, de modo que el sistema lo toma, comprueba contra el servidor OAuth2.0 que sigue siendo un token válido, y en caso de serlo, deja realizar al usuario la petición.
 
-Para la implementación de este protocolo, utilizaremos un framework adaptado a la lógica de Ktor. \textbr{MYNDOCS*******}
-Este framework será adaptado a las características de uso del sistema, estableciendo el método de comprobación de credenciales oportuno. 
+Para la implementación de este protocolo utilizaremos un framework adaptado a la lógica de Ktor. \textbr{MYNDOCS*******}
+Este framework será adaptado a las características de uso del sistema, estableciendo el método de comprobación de credenciales que se considere oportuno, pudiendo variar en caso de que las credenciales correspondan con las de un dispositivo, o con las de un administrador del sistema.
 
     \subsection{Exposed SQL}
 
