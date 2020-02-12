@@ -2,4 +2,129 @@
 
 \subsection{Definición de casos de uso}
 
+%% ====== DISPOSITIVO ======
+
+%% IDENTIFICAR DISPOSITIVO
+\begin{table}[]
+\centering
+	\setlength{\extrarowheight}{3pt}
+		\begin{tabular}{rc{1.85cm}|c{8cm}}
+	    \hline
+        \multicolumn{1}{|l}{ \textbf{CU-D-01}}     & \multicolumn{1}{c|}{\textbf{Inicio de sesión de dispositivo}  } \\
+	    \hline \hline
+	    \multicolumn{1}{|l}{Descripción}     & \multicolumn{1}{Y|}{
+	    Un dispositivo se identifica ante el sistema con el fin de obtener unos tokens de acceso, con los que autenticar posteriormente sus llamadas.
+	    }  \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Actor}           & \multicolumn{1}{l|}{Dispositivo}  \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Precondiciones}  & \multicolumn{1}{l|}{El dispositivo tiene conexión a Internet.}  \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Postcondiciones} & \multicolumn{1}{l|}{Se obtiene un par de tokens.}\\ \cline{1-2}
+	    \multicolumn{1}{|l}{Flujo normal}    & \multicolumn{1}{Y|}{
+1. El dispositivo obtiene su dirección MAC.
+2. El dispositivo genera la clave a partir de una encriptación de su MAC, formando sus credenciales, y se las envía al servidor. \newline
+3. El servidor comprueba la validez de las credenciales, genera un par de tokens asociados al dispositivo y los devuelve. \newline
+	    } \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Flujo Alternativo} & \multicolumn{1}{l|}{}\\ \cline{1-2}
+	    \hline
+	    \end{tabular}
+	\label{table:cu-d-01}
+	\caption{Inicio de sesión de dispositivo}
+\end{table}
+
+%%%% REFRESH TOKEN
+\begin{table}[]
+\centering
+	\setlength{\extrarowheight}{3pt}
+		\begin{tabular}{rc{1.85cm}|c{8cm}}
+	    \hline
+        \multicolumn{1}{|l}{ \textbf{CU-D-02}}     & \multicolumn{1}{c|}{\textbf{Refrescar token de dispositivo}  } \\
+	    \hline \hline
+	    \multicolumn{1}{|l}{Descripción}     & \multicolumn{1}{Y|}{
+	    Un dispositivo actualiza su par de tokens a partir de un token de refresco.
+	    }  \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Actor}           & \multicolumn{1}{l|}{Dispositivo}  \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Precondiciones}  & \multicolumn{1}{Y|}{
+1. El dispositivo tiene conexión a Internet.\newline
+2. El dispositivo tiene un token de refresco válido.}  \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Postcondiciones} & \multicolumn{1}{l|}{Se obtiene un par de tokens.}\\ \cline{1-2}
+	    \multicolumn{1}{|l}{Flujo normal}    & \multicolumn{1}{Y|}{
+1. El dispositivo manda su token de refresco. \newline
+2. El sistema comprueba la validez del token de refresco, genera un par de tokens nuevos y los devuelve. \newline
+3. El dispositivo actualiza los antiguos tokens por los nuevos.
+	    } \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Flujo Alternativo} & \multicolumn{1}{l|}{Diagramas/ Fotos}\\ \cline{1-2}
+	    \hline
+	    \end{tabular}
+	\label{table:cu-d-02}
+	\caption{Refrescar token}
+\end{table}
+
+%%%% AVISO ACTIVO
+\begin{table}[]
+\centering
+	\setlength{\extrarowheight}{3pt}
+		\begin{tabular}{rc{1.85cm}|c{8cm}}
+	    \hline
+        \multicolumn{1}{|l}{ \textbf{CU-D-04}}     & \multicolumn{1}{c|}{\textbf{Aviso de dispositivo encendido} } \\
+	    \hline \hline
+	    \multicolumn{1}{|l}{Descripción}     & \multicolumn{1}{Y|}{
+	    Un dispositivo avisa de que está en funcionamiento.
+	    }  \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Actor}           & \multicolumn{1}{l|}{Dispositivo}  \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Precondiciones}  & \multicolumn{1}{Y|}{
+1. El dispositivo tiene conexión a Internet.\newline
+2. El dispositivo tiene un par de tokens activos.}  \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Postcondiciones} & \multicolumn{1}{l|}{}\\ \cline{1-2}
+	    \multicolumn{1}{|l}{Flujo normal}    & \multicolumn{1}{Y|}{
+1. El dispositivo hace una petición \textit{/alive} al servidor. \newline
+2. El sistema realiza el caso de uso \textbf{*****}. \newline
+3. El dispositivo recibe una respuesta vacía del servidor. \newline
+4. Finaliza el caso de uso.
+	    } \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Flujo Alternativo} & \multicolumn{1}{l|}{
+4.1. El dispositivo recibe en la respuesta una tarea pendiente. \newline
+4.2. El dispositivo avisa al servidor que va a hacer la tarea. \newline
+4.3. El dispositivo hace la tarea. \newline
+4.4. Finaliza el caso de uso.
+	    }\\ \cline{1-2}
+	    \hline
+	    \end{tabular}
+	\label{table:cu-d-03}
+	\caption{Dispositivo notifica que está encendido.}
+\end{table}
+
+%%% ====== SISTEMA =======
+
+%%%% COMPROBAR CREDENCIALES
+
+\begin{table}[]
+\centering
+	\setlength{\extrarowheight}{3pt}
+		\begin{tabular}{rc{1.85cm}|c{8cm}}
+	    \hline
+        \multicolumn{1}{|l}{ \textbf{CU-S-01}}     & \multicolumn{1}{c|}{\textbf{Identificación de dispositivo} } \\
+	    \hline \hline
+	    \multicolumn{1}{|l}{Descripción}     & \multicolumn{1}{Y|}{
+	    El sistema debe identificar a un dispositivo ante el sistema, y en caso de no estar identificado, registrarle.
+	    }  \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Actor}           & \multicolumn{1}{l|}{Servidor}  \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Precondiciones}  & \multicolumn{1}{Y|}{
+1. El servidor recibe una llamada para identificar a un dispositivo.}  \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Postcondiciones} & \multicolumn{1}{l|}{
+1. Se genera un par de tokens asociados a un dispositivo concreto.\newline
+2. Existe un registro del dispositivo en el sistema.}\\ \cline{1-2}
+	    \multicolumn{1}{|l}{Flujo normal}    & \multicolumn{1}{Y|}{
+1. El servidor recibe unas credenciales en una llamada. \newline
+2. El servidor comprueba la validez de los credenciales. \newline
+3. El dispositivo crea un par de tokens de acceso de tipo dispositivo y los devuelve por la llamada. \newline
+4. Finaliza el caso de uso.
+	    } \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Flujo Alternativo} & \multicolumn{1}{l|}{
+2.1. El servidor detecta que el dispositivo aún no está registrado y lo registra.
+	    }\\ \cline{1-2}
+	    \hline
+	    \end{tabular}
+	\label{table:cu-d-03}
+	\caption{Servidor identifica a un dispositivo.}
+\end{table}
+
 \subsection{Matriz de aproximación con requisitos}
