@@ -1,11 +1,18 @@
 \subsection{Diagrama de casos de uso}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{./img/uc.png}
+    \caption{Diagrama general de casos de uso}
+    \label{fig:seq.alive}
+\end{figure}
+
 \subsection{Definición de casos de uso}
 
 %% ====== DISPOSITIVO ======
 
 %% IDENTIFICAR DISPOSITIVO
-\begin{table}[]
+\begin{table}[H]
 \centering
 	\setlength{\extrarowheight}{3pt}
 		\begin{tabular}{rc{1.85cm}|Y{8cm}}
@@ -39,12 +46,12 @@
 \end{table}
 
 %%%% REFRESH TOKEN
-\begin{table}[]
+\begin{table}[H]
 \centering
 	\setlength{\extrarowheight}{3pt}
 		\begin{tabular}{rc{1.85cm}|c{8cm}}
 	    \hline
-        \multicolumn{1}{|l}{CU_U01}     & \multicolumn{1}{Y|}{\textbf{Refrescar token de acceso}  } \\
+        \multicolumn{1}{|l}{CU_U01}     & \multicolumn{1}{Y|}{\textbf{Refresco de token de acceso}  } \\
 	    \hline \hline
 	    \multicolumn{1}{|l}{Descripción}     & \multicolumn{1}{Y|}{
 	    Un dispositivo o usuario piden al servidor una actualización de sus tokens de acceso.
@@ -66,18 +73,18 @@
 	    \hline
 	    \end{tabular}
 	\label{table:cu_u01}
-	\caption{Caso de Uso U01 - Refrescar token de acceso}
+	\caption{Caso de Uso U01 - Refresco de token de acceso}
 \end{table}
 
 
 %%%% AVISO ACTIVO + TAREA
 
-\begin{table}[]
+\begin{table}[H]
 \centering
 	\setlength{\extrarowheight}{3pt}
 		\begin{tabular}{r{1.85cm}|Y}
 	    \hline
-        \multicolumn{1}{|l}{CU_D02}     & \multicolumn{1}{Y|}{\textbf{Aviso de dispositivo encendido} } \\
+        \multicolumn{1}{|l}{CU_D02}     & \multicolumn{1}{Y|}{\textbf{Notificación de dispositivo conectado} } \\
 	    \hline \hline
 	    \multicolumn{1}{|l}{Descripción}     & \multicolumn{1}{Y|}{
 	    Un dispositivo avisa de que está encendido.
@@ -102,17 +109,17 @@
 	    \hline
 	    \end{tabular}
 	\label{table:cu-d-02}
-	\caption{Caso de Uso D02 - Dispositivo notifica que está encendido.}
+	\caption{Caso de Uso D02 - Notificación de dispositivo conectado.}
 \end{table}
 
 %% Realizar tarea 
 
-\begin{table}[]
+\begin{table}[H]
 \centering
 	\setlength{\extrarowheight}{3pt}
 		\begin{tabular}{r{1.85cm}|Y}
 	    \hline
-        \multicolumn{1}{|l}{CU_D03}     & \multicolumn{1}{Y|}{\textbf{Realizar tarea pendiente} } \\
+        \multicolumn{1}{|l}{CU_D03}     & \multicolumn{1}{Y|}{\textbf{Realización de tarea pendiente} } \\
 	    \hline \hline
 	    \multicolumn{1}{|l}{Descripción}     & \multicolumn{1}{Y|}{
 	    El dispositivo ejecuta una acción pendiente.
@@ -136,12 +143,12 @@
 	    \hline
 	    \end{tabular}
 	\label{table:cu-d-03}
-	\caption{Caso de Uso D03 - Realizar tarea pendiente.}
+	\caption{Caso de Uso D03 - Realización de tarea pendiente.}
 \end{table}
 
 %% OBTENER CONFIGURACIÓN
 
-\begin{table}[]
+\begin{table}[H]
 \centering
 	\setlength{\extrarowheight}{3pt}
 		\begin{tabular}{r{1.85cm}|Y}
@@ -178,7 +185,7 @@
 
 %% ADMINISTRADOR INICIO SESIÓN
 
-\begin{table}[]
+\begin{table}[H]
 \centering
 	\setlength{\extrarowheight}{3pt}
 		\begin{tabular}{rc{1.85cm}|Y{8cm}}
@@ -214,12 +221,12 @@
 
 %% CREAR NUEVO TIPO DE TAREA
     %% BACK
-\begin{table}[]
+\begin{table}[H]
 \centering
 	\setlength{\extrarowheight}{3pt}
 		\begin{tabular}{rc{1.85cm}|Y{8cm}}
 	    \hline
-        \multicolumn{1}{|l}{CU_A02}     & \multicolumn{1}{Y|}{\textbf{Crear nuevo tipo de tarea}  } \\
+        \multicolumn{1}{|l}{CU_A02}     & \multicolumn{1}{Y|}{\textbf{Creacción de un nuevo tipo de tarea}  } \\
 	    \hline \hline
 	    \multicolumn{1}{|l}{Descripción}     & \multicolumn{1}{Y|}{
 	    Un administrador crea un nuevo tipo de tarea que será asignable a un dispositivo.
@@ -244,7 +251,7 @@ Se registra un nuevo tipo de tarea.}\\ \cline{1-2}
 	    \hline
 	    \end{tabular}
 	\label{table:cu_A02}
-	\caption{Caso de Uso A02 - Creacción de nuevo tipo de tarea.}
+	\caption{Caso de Uso A02 - Creacción de un nuevo tipo de tarea.}
 \end{table}
     %% FRONT
     
@@ -252,12 +259,12 @@ Se registra un nuevo tipo de tarea.}\\ \cline{1-2}
 
 %%%% Creacción de tarea
 
-\begin{table}[]
+\begin{table}[H]
 \centering
 	\setlength{\extrarowheight}{3pt}
 		\begin{tabular}{r{1.85cm}|Y}
 	    \hline
-        \multicolumn{1}{|l}{CU_A03}     & \multicolumn{1}{Y|}{\textbf{Asignar tarea} } \\
+        \multicolumn{1}{|l}{CU_A03}     & \multicolumn{1}{Y|}{\textbf{Asignación de tarea} } \\
 	    \hline \hline
 	    \multicolumn{1}{|l}{Descripción}     & \multicolumn{1}{Y|}{
 	    Un administrador asigna una nueva tarea a un dispositivo específico.
@@ -284,7 +291,7 @@ Se registra un nuevo tipo de tarea.}\\ \cline{1-2}
 \end{table}
     
 %% VER TAREAS EXISTENTES
-\begin{table}[]
+\begin{table}[H]
 \centering
 	\setlength{\extrarowheight}{3pt}
 		\begin{tabular}{rc{1.85cm}|Y{8cm}}
@@ -317,12 +324,12 @@ El administrador posee un token de acceso activo.}  \\ \cline{1-2}
 \end{table}
 
 %% VER TAREAS EXISTENTES
-\begin{table}[]
+\begin{table}[H]
 \centering
 	\setlength{\extrarowheight}{3pt}
 		\begin{tabular}{rc{1.85cm}|Y{8cm}}
 	    \hline
-        \multicolumn{1}{|l}{CU_A05}     & \multicolumn{1}{Y|}{\textbf{Recolectar tareas de un dispositivo}  } \\
+        \multicolumn{1}{|l}{CU_A05}     & \multicolumn{1}{Y|}{\textbf{Obtención de tareas de un dispositivo}  } \\
 	    \hline \hline
 	    \multicolumn{1}{|l}{Descripción}     & \multicolumn{1}{Y|}{
 	    Un administrador obtiene una lista con todas las tareas asignadas a un dispositivo en un periodo de tiempo concreto.
@@ -350,7 +357,7 @@ El administrador posee un token de acceso activo.}  \\ \cline{1-2}
 \end{table}
 
 %% CAMBIAR CONFIGURACIÓN DE DISPOSITIVO
-\begin{table}[]
+\begin{table}[H]
 \centering
 	\setlength{\extrarowheight}{3pt}
 		\begin{tabular}{rc{1.85cm}|Y{8cm}}
@@ -386,12 +393,12 @@ Se registra una nueva configuración.}\\ \cline{1-2}
 
 %% OBTENER LISTA DE DISPOSITIVOS
 
-\begin{table}[]
+\begin{table}[H]
 \centering
 	\setlength{\extrarowheight}{3pt}
 		\begin{tabular}{rc{1.85cm}|Y{8cm}}
 	    \hline
-        \multicolumn{1}{|l}{CU_A07}     & \multicolumn{1}{Y|}{\textbf{Obtener lista de dispositivos}  } \\
+        \multicolumn{1}{|l}{CU_A07}     & \multicolumn{1}{Y|}{\textbf{Obtención de todos los dispositivos}  } \\
 	    \hline \hline
 	    \multicolumn{1}{|l}{Descripción}     & \multicolumn{1}{Y|}{
 	    Un administrador solicita la información de todos los dispositivos del sistema.
@@ -416,17 +423,17 @@ El administrador posee un token de acceso activo.}  \\ \cline{1-2}
 	    \hline
 	    \end{tabular}
 	\label{table:cu_A07}
-	\caption{Caso de Uso A07 - Cambiar configuración de dispositivos.}
+	\caption{Caso de Uso A07 - Obtención de todos los dispositivos.}
 \end{table}
 
 %% FILTRAR ACTIVIDAD DE UN DISPOSITIVO
 
-\begin{table}[]
+\begin{table}[H]
 \centering
 	\setlength{\extrarowheight}{3pt}
 		\begin{tabular}{rc{1.85cm}|Y{8cm}}
 	    \hline
-        \multicolumn{1}{|l}{CU_A08}     & \multicolumn{1}{Y|}{\textbf{Obtener actividad de un dispositivo}  } \\
+        \multicolumn{1}{|l}{CU_A08}     & \multicolumn{1}{Y|}{\textbf{Obtención de actividad de un dispositivo}  } \\
 	    \hline \hline
 	    \multicolumn{1}{|l}{Descripción}     & \multicolumn{1}{Y|}{
 	    Un administrador solicita la información más específica de un dispositivo del sistema.
@@ -453,17 +460,17 @@ El administrador posee un token de acceso activo.}  \\ \cline{1-2}
 	    \hline
 	    \end{tabular}
 	\label{table:cu_A08}
-	\caption{Caso de Uso A08 - Obtener actividad de un dispositivo.}
+	\caption{Caso de Uso A08 - Obtención de actividad de un dispositivo.}
 \end{table}
 
 %% FILTRAR ACTIVIDAD DE UN USUARIO
 
-\begin{table}[]
+\begin{table}[H]
 \centering
 	\setlength{\extrarowheight}{3pt}
 		\begin{tabular}{rc{1.85cm}|Y{8cm}}
 	    \hline
-        \multicolumn{1}{|l}{CU_A09}     & \multicolumn{1}{Y|}{\textbf{Obtener actividad de un usuario}  } \\
+        \multicolumn{1}{|l}{CU_A09}     & \multicolumn{1}{Y|}{\textbf{Obtención de actividad de un usuario}  } \\
 	    \hline \hline
 	    \multicolumn{1}{|l}{Descripción}     & \multicolumn{1}{Y|}{
 	    Un administrador solicita la información más específica de un usuario del sistema.
@@ -490,17 +497,17 @@ El administrador posee un token de acceso activo.}  \\ \cline{1-2}
 	    \hline
 	    \end{tabular}
 	\label{table:cu_A09}
-	\caption{Caso de Uso A09 - Obtener actividad de un usuario}
+	\caption{Caso de Uso A09 - Obtención de actividad de un usuario}
 \end{table}
 
 %% AÑADIR NUEVA LOCALIDAD
 
-\begin{table}[]
+\begin{table}[H]
 \centering
 	\setlength{\extrarowheight}{3pt}
 		\begin{tabular}{rc{1.85cm}|Y{8cm}}
 	    \hline
-        \multicolumn{1}{|l}{CU_A10}     & \multicolumn{1}{Y|}{\textbf{Añadir una nueva localidad}  } \\
+        \multicolumn{1}{|l}{CU_A10}     & \multicolumn{1}{Y|}{\textbf{Adición de una nueva localidad}  } \\
 	    \hline \hline
 	    \multicolumn{1}{|l}{Descripción}     & \multicolumn{1}{Y|}{
 	    Un administrador añade una nueva localidad al sistema.
@@ -527,17 +534,17 @@ La localidad es añadida al sistema, guardando su nombre y código postal.}\\ \c
 	    \hline
 	    \end{tabular}
 	\label{table:cu_A10}
-	\caption{Caso de Uso A10 - Añadir una nueva localidad.}
+	\caption{Caso de Uso A10 - Adición de una nueva localidad.}
 \end{table}
 
 %% AÑADIR NUEVOS CLIENTES
 
-\begin{table}[]
+\begin{table}[H]
 \centering
 	\setlength{\extrarowheight}{3pt}
 		\begin{tabular}{rc{1.85cm}|Y{8cm}}
 	    \hline
-        \multicolumn{1}{|l}{CU_A11}     & \multicolumn{1}{Y|}{\textbf{Añadir nuevo usuario}  } \\
+        \multicolumn{1}{|l}{CU_A11}     & \multicolumn{1}{Y|}{\textbf{Adición de nuevo usuario}  } \\
 	    \hline \hline
 	    \multicolumn{1}{|l}{Descripción}     & \multicolumn{1}{Y|}{
 	    Un administrador añade un nuevo usuario en el sistema.
@@ -564,17 +571,17 @@ El usuario es añadido al sistema, teniendo una localidad asociada.}\\ \cline{1-
 	    \hline
 	    \end{tabular}
 	\label{table:cu_A11}
-	\caption{Caso de Uso A11 - Añadir nuevo usuario.}
+	\caption{Caso de Uso A11 - Adición de un nuevo usuario.}
 \end{table}
 
 %% ASIGNAR DISPOSITIVO A CLIENTE
 
-\begin{table}[]
+\begin{table}[H]
 \centering
 	\setlength{\extrarowheight}{3pt}
 		\begin{tabular}{rc{1.85cm}|Y{8cm}}
 	    \hline
-        \multicolumn{1}{|l}{CU_A12}     & \multicolumn{1}{Y|}{\textbf{Asignar dispositivo a cliente}  } \\
+        \multicolumn{1}{|l}{CU_A12}     & \multicolumn{1}{Y|}{\textbf{Asignación de dispositivo a un usuario}  } \\
 	    \hline \hline
 	    \multicolumn{1}{|l}{Descripción}     & \multicolumn{1}{Y|}{
 	    Un administrador solicita la información más específica de un usuario del sistema. \newline
@@ -602,17 +609,17 @@ El dispositivo tiene una asignación activa con el usuario.}\\ \cline{1-2}
 	    \hline
 	    \end{tabular}
 	\label{table:cu_A12}
-	\caption{Caso de Uso A12 - Asignar dispositivo a un usuario.}
+	\caption{Caso de Uso A12 - Asignación de dispositivo a un usuario.}
 \end{table}
 
 %% DESASIGNAR DISPOSITIVO A CLIENTE
 
-\begin{table}[]
+\begin{table}[H]
 \centering
 	\setlength{\extrarowheight}{3pt}
 		\begin{tabular}{rc{1.85cm}|Y{8cm}}
 	    \hline
-        \multicolumn{1}{|l}{CU_A13}     & \multicolumn{1}{Y|}{\textbf{Dessignar dispositivo a usuario}  } \\
+        \multicolumn{1}{|l}{CU_A13}     & \multicolumn{1}{Y|}{\textbf{Desasignación del dispositivo de un usuario}  } \\
 	    \hline \hline
 	    \multicolumn{1}{|l}{Descripción}     & \multicolumn{1}{Y|}{
 	    Un administrador desasigna el dispositivo a un usuario.
@@ -639,7 +646,7 @@ Finaliza la asignación de un dispositivo a un usuario}\\ \cline{1-2}
 	    \hline
 	    \end{tabular}
 	\label{table:cu_A13}
-	\caption{Caso de Uso A13 - Desasignar dispositivo a usuario.}
+	\caption{Caso de Uso A13 - Desasignación de un dispositivo a un usuario.}
 \end{table}
 
 

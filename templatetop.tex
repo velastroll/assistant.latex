@@ -14,6 +14,28 @@
 \newcolumntype{L}{>{\begin{varwidth}{6cm}}c<{\end{varwidth}}}
 \newcolumntype{X}{>{\begin{varwidth}{8cm}}c<{\end{varwidth}}}
 \newcolumntype{Y}{>{\begin{varwidth}{10cm}}l<{\end{varwidth}}}
+\usepackage{float}
+\usepackage{listings} %% START: Definimos el modo de mostrar codigo
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{frame=tb,
+  language=Bash,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+} % END: mostrar codigo
 
 \setlength{\parskip}{10pt plus 1pt minus 1pt}
  % aqui definimos el encabezado de las paginas pares e impares.
