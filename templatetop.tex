@@ -17,11 +17,17 @@
 \usepackage{float}
 \usepackage{listings} %% START: Definimos el modo de mostrar codigo
 \usepackage{color}
+\usepackage{bera}% optional: just to have a nice mono-spaced font
+\usepackage{xcolor}
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{EEEEEE}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
-\lstset{frame=tb,
-  language=Bash,
+\lstset{frame=tb, % VIM
+  language=java,
   aboveskip=3mm,
   belowskip=3mm,
   showstringspaces=false,
@@ -34,8 +40,38 @@
   stringstyle=\color{mauve},
   breaklines=true,
   breakatwhitespace=true,
-  tabsize=3
-} % END: mostrar codigo
+  tabsize=2
+}
+\lstdefinelanguage{json}{ % Define JSON
+    basicstyle=\normalfont\ttfamily,
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{background},
+    literate=
+     *{0}{{{\color{numb}0}}}{1}
+      {1}{{{\color{numb}1}}}{1}
+      {2}{{{\color{numb}2}}}{1}
+      {3}{{{\color{numb}3}}}{1}
+      {4}{{{\color{numb}4}}}{1}
+      {5}{{{\color{numb}5}}}{1}
+      {6}{{{\color{numb}6}}}{1}
+      {7}{{{\color{numb}7}}}{1}
+      {8}{{{\color{numb}8}}}{1}
+      {9}{{{\color{numb}9}}}{1}
+      {:}{{{\color{punct}{:}}}}{1}
+      {,}{{{\color{punct}{,}}}}{1}
+      {\{}{{{\color{delim}{\{}}}}{1}
+      {\}}{{{\color{delim}{\}}}}}{1}
+      {[}{{{\color{delim}{[}}}}{1}
+      {]}{{{\color{delim}{]}}}}{1},
+}
+
+\usepackage[table,xcdraw]{xcolor} % tabla con colores
 
 \setlength{\parskip}{10pt plus 1pt minus 1pt}
  % aqui definimos el encabezado de las paginas pares e impares.
@@ -51,7 +87,6 @@
 %redefino el verbatim
 %\renewenvironment{verbatim}{\begin{Verbatim}[frame=single,fontsize=\small]}{\end{Verbatim}}
 
-
 % aqui definimos el encabezado y pie de pagina de la pagina inicial de un capitulo.
 \fancypagestyle{plain}{
 \fancyhead[R]{}
@@ -63,11 +98,8 @@
 
 \pagestyle{fancy} % seleccionamos un estilo
 
-
-
 \date{21 de Enero de 2020}
 \author{Velasco Gil, Álvaro}
-
 \title{TFG: titulo}
 
 \begin{document}
@@ -160,13 +192,9 @@ Para el desarrollo de este proyecto se ha utilizado diferentes lenguajes, como K
 \addcontentsline{toc}{chapter}{Lista de figuras} % para que aparezca en el indice de contenidos
 \listoffigures % indice de figuras
 
-Aquí aparecerá la lista de imagenes que hay en el TFG
-
 \cleardoublepage
 \addcontentsline{toc}{chapter}{Lista de tablas} % para que aparezca en el indice de contenidos
 \listoftables % indice de tablas
-
-Aquí aparecerá la lista de tablas que hay en el TFG
 
 \chapter{Introducción}\label{cap.introduccion}
 \pagenumbering{arabic} % para empezar la numeración con números

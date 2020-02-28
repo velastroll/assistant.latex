@@ -183,6 +183,41 @@
 	\caption{Caso de Uso D04 - Actualización de configuración}
 \end{table}
 
+%% ADICION DE ACTIVIDAD DE DISPOSITIVO
+
+\begin{table}[H]
+\centering
+	\setlength{\extrarowheight}{3pt}
+		\begin{tabular}{r{1.85cm}|Y}
+	    \hline
+        \multicolumn{1}{|l}{CU_D05}     & \multicolumn{1}{Y|}{\textbf{Envío de actividad de un dispositivo} } \\
+	    \hline \hline
+	    \multicolumn{1}{|l}{Descripción}     & \multicolumn{1}{Y|}{
+	    El dispositivo envía su actividad al servidor.
+	    }  \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Actor}           & \multicolumn{1}{Y|}{Dispositivo}  \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Precondiciones}  & \multicolumn{1}{Y|}{
+1. El dispositivo tiene conexión a Internet.\newline
+2. El dispositivo tiene un token de acceso válido.}\newline
+3. El dispositivo ha realizado alguna actividad con el usuario.\\ \cline{1-2}
+	    \multicolumn{1}{|l}{Postcondiciones} & \multicolumn{1}{Y|}{
+1. El servidor actualiza su registro de actividades.}\\ \cline{1-2}
+	    \multicolumn{1}{|l}{Flujo normal}    & \multicolumn{1}{Y|}{
+1. El dispositivo procesa una nueva actividad y la envía al servidor. \newline
+2. El servidor autentica al dispositivo a partir de su token, comprueba la validez de los datos enviados, registra la actividad asignando una marca de tiempo a dicha actividad, y devuelve un mensaje de confirmación al dispositivo. \newline
+3. El dispositivo recibe esa respuesta y finaliza el caso de uso. \newline
+	    } \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Flujo Alternativo} & \multicolumn{1}{Y|}{
+2.A1.1. El servidor detecta que la autenticación no es válida y devuelve error. \newline
+2.A1.2. El dispositivo recibe un mensaje no válido, y devuelve error. \newline
+
+	    }\\ \cline{1-2}
+	    \hline
+	    \end{tabular}
+	\label{table:cu-d-05}
+	\caption{Caso de Uso D05 - Envío de actividad de un dispositivo}
+\end{table}
+
 %% ADMINISTRADOR INICIO SESIÓN
 
 \begin{table}[H]
@@ -190,7 +225,7 @@
 	\setlength{\extrarowheight}{3pt}
 		\begin{tabular}{rc{1.85cm}|Y{8cm}}
 	    \hline
-        \multicolumn{1}{|l}{CU_A02}     & \multicolumn{1}{Y|}{\textbf{Inicio de sesión}  } \\
+        \multicolumn{1}{|l}{CU_A01}     & \multicolumn{1}{Y|}{\textbf{Inicio de sesión}  } \\
 	    \hline \hline
 	    \multicolumn{1}{|l}{Descripción}     & \multicolumn{1}{Y|}{
 	    Un administrador se identifica ante el sistema con el fin de obtener unos tokens de acceso, con los que autenticar posteriormente sus llamadas.
@@ -257,7 +292,7 @@ Se registra un nuevo tipo de tarea.}\\ \cline{1-2}
     
     
 
-%%%% Creacción de tarea
+%%%% Asignación de tarea
 
 \begin{table}[H]
 \centering
@@ -280,9 +315,6 @@ Se registra un nuevo tipo de tarea.}\\ \cline{1-2}
 2. El sistema recibe una nueva asignación de tarea, comprueba que es una petición autenticada, asigna la tarea como pendiente para el dispositivo y responde como petición correcta. \newline
 3. El administrador recibe la respuesta y finaliza el caso de uso. \newline} \\ \cline{1-2}
 	    \multicolumn{1}{|l}{Flujo Alternativo} & \multicolumn{1}{Y|}{
-2.A1.1. El dispositivo recibe en la respuesta una tarea pendiente. \newline
-2.A1.2. El dispositivo avisa al servidor que va a hacer la tarea. \newline
-2.A1.3. El dispositivo realiza la tarea y finaliza el caso de uso.\newline
         }\\ \cline{1-2}
 	    \hline
 	    \end{tabular}
@@ -649,6 +681,146 @@ Finaliza la asignación de un dispositivo a un usuario}\\ \cline{1-2}
 	\caption{Caso de Uso A13 - Desasignación de un dispositivo a un usuario.}
 \end{table}
 
+%% Obtener relaciones
+
+\begin{table}[H]
+\centering
+	\setlength{\extrarowheight}{3pt}
+		\begin{tabular}{rc{1.85cm}|Y{8cm}}
+	    \hline
+        \multicolumn{1}{|l}{CU_A14}     & \multicolumn{1}{Y|}{\textbf{Obtención de usuario de un dispositivo específico}  } \\
+	    \hline \hline
+	    \multicolumn{1}{|l}{Descripción}     & \multicolumn{1}{Y|}{
+	    Un administrador obtiene los datos de usuario asignado a un dipositivo concreto.
+	    }  \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Actor}           & \multicolumn{1}{Y|}{Administrador}  \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Precondiciones}  & \multicolumn{1}{Y|}{
+1. El administrador posee un token de acceso activo.}\\ \cline{1-2}
+	    \multicolumn{1}{|l}{Postcondiciones} & \multicolumn{1}{Y|}{
+Finaliza la asignación de un dispositivo a un usuario}\\ \cline{1-2}
+	    \multicolumn{1}{|l}{Flujo normal}    & \multicolumn{1}{Y|}{
+1. El administrador solicita al servidor la información sobre el usuario asociado a un determinado dipositivo. \newline
+2. El servidor autentica la petición, recolecta la información asociada al usuario que tiene asignado ese determinado dispositivo y se la devuelve al administrador. \newline
+3. El administrador recibe la información y finaliza el caso de uso. \newline
+	    } \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Flujo Alternativo} & \multicolumn{1}{Y|}{
+	    
+	    \textbf{Flujo Alternativo 1:} \newline
+2.A1.1. El servidor comprueba que los credenciales no son válidos y devuelve error. \newline
+
+	    \textbf{Flujo Alternativo 2:} \newline
+2.A2.1. El servidor detecta un error en la información procesada y devuelve error. \newline
+}\\ \cline{1-2}
+	    \hline
+	    \end{tabular}
+	\label{table:cu_A14}
+	\caption{Caso de Uso A14 - Obtención de usuario de un dispositivo específico.}
+\end{table}
+
+%% Obtener LOCALIDADES
+
+\begin{table}[H]
+\centering
+	\setlength{\extrarowheight}{3pt}
+		\begin{tabular}{rc{1.85cm}|Y{8cm}}
+	    \hline
+        \multicolumn{1}{|l}{CU_A15}     & \multicolumn{1}{Y|}{\textbf{Obtención de localidades}  } \\
+	    \hline \hline
+	    \multicolumn{1}{|l}{Descripción}     & \multicolumn{1}{Y|}{
+	    Un administrador obtiene la lista de las localidades junto a información relevante sobre cada una.
+	    }  \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Actor}           & \multicolumn{1}{Y|}{Administrador}  \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Precondiciones}  & \multicolumn{1}{Y|}{
+1. El administrador posee un token de acceso activo.\newline} \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Postcondiciones} & \multicolumn{1}{Y|}{}\\ \cline{1-2}
+	    \multicolumn{1}{|l}{Flujo normal}    & \multicolumn{1}{Y|}{
+1. El administrador solicita al servidor la lista de localidades. \newline
+2. El servidor autentica la petición, recolecta la información sobre todas las localidades y se la envía al administrador. \newline
+3. El administrador recibe la información y finaliza el caso de uso. \newline
+	    } \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Flujo Alternativo} & \multicolumn{1}{Y|}{
+2.A1.1. El servidor comprueba que los credenciales no son válidos y devuelve error. \newline
+}\\ \cline{1-2}
+	    \hline
+	    \end{tabular}
+	\label{table:cu_A15}
+	\caption{Caso de Uso A15 - Obtención de localidades.}
+\end{table}
+
+%% Obtener lista de usuarios
+
+\begin{table}[H]
+\centering
+	\setlength{\extrarowheight}{3pt}
+		\begin{tabular}{rc{1.85cm}|Y{8cm}}
+	    \hline
+        \multicolumn{1}{|l}{CU_A16}     & \multicolumn{1}{Y|}{\textbf{Obtención de la lista de usuarios}  } \\
+	    \hline \hline
+	    \multicolumn{1}{|l}{Descripción}     & \multicolumn{1}{Y|}{
+	    Un administrador obtiene una lista con todos los usuarios del sistema, indicando en cada uno información como su localidad y dispositivo asociado en caso de que lo tenga.
+	    }  \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Actor}           & \multicolumn{1}{Y|}{Administrador}  \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Precondiciones}  & \multicolumn{1}{Y|}{
+1. El administrador posee un token de acceso activo.\newline} \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Postcondiciones} & \multicolumn{1}{Y|}{}\\ \cline{1-2}
+	    \multicolumn{1}{|l}{Flujo normal}    & \multicolumn{1}{Y|}{
+1. El administrador solicita al servidor la lista de usuarios registrados. \newline
+2. El servidor autentica la petición, recolecta la información y se la devuelve al administrador. \newline
+3. El administrador recibe la información y finaliza el caso de uso. \newline
+	    } \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Flujo Alternativo} & \multicolumn{1}{Y|}{
+	    
+	    \textbf{Flujo Alternativo 1:} \newline
+2.A1.1. El servidor comprueba que los credenciales no son válidos y devuelve error. \newline
+
+	    \textbf{Flujo Alternativo 2:} \newline
+2.A2.1. El servidor detecta un error en la información procesada y devuelve error. \newline
+}\\ \cline{1-2}
+	    \hline
+	    \end{tabular}
+	\label{table:cu_A16}
+	\caption{Caso de Uso A16 - Obtención de la lista de usuarios registrados.}
+\end{table}
+
+%% Obtener actividad de un pueblo
+*************************** VER SI AL FINAL METO ESTO ***************************
+
+\begin{table}[H]
+\centering
+	\setlength{\extrarowheight}{3pt}
+		\begin{tabular}{rc{1.85cm}|Y{8cm}}
+	    \hline
+        \multicolumn{1}{|l}{CU_S01}     & \multicolumn{1}{Y|}{\textbf{Recolección de actividad de un pueblo}  } \\
+	    \hline \hline
+	    \multicolumn{1}{|l}{Descripción}     & \multicolumn{1}{Y|}{
+	    El servidor obtiene datos de un pueblo a través del parseo de su sitio web.
+	    }  \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Actor}           & \multicolumn{1}{Y|}{Tiempo}  \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Precondiciones}  & \multicolumn{1}{Y|}{
+1. Ha pasado el tiempo requerido.\newline} \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Postcondiciones} & \multicolumn{1}{Y|}{
+Finaliza la asignación de un dispositivo a un usuario}\\ \cline{1-2}
+	    \multicolumn{1}{|l}{Flujo normal}    & \multicolumn{1}{Y|}{
+1. El administrador solicita al servidor la información sobre el usuario asociado a un determinado dipositivo. \newline
+2. El servidor autentica la petición, recolecta la información asociada al usuario que tiene asignado ese determinado dispositivo y se la devuelve al administrador. \newline
+3. El administrador recibe la información y finaliza el caso de uso. \newline
+	    } \\ \cline{1-2}
+	    \multicolumn{1}{|l}{Flujo Alternativo} & \multicolumn{1}{Y|}{
+	    
+	    \textbf{Flujo Alternativo 1:} \newline
+2.A1.1. El servidor comprueba que los credenciales no son válidos y devuelve error. \newline
+
+	    \textbf{Flujo Alternativo 2:} \newline
+2.A2.1. El servidor detecta un error en la información procesada y devuelve error. \newline
+}\\ \cline{1-2}
+	    \hline
+	    \end{tabular}
+	\label{table:cu_S01}
+	\caption{Caso de Uso S01 - Recolección de información de una localidad.}
+\end{table}
+
 
 
 \subsection{Matriz de aproximación con requisitos}
+
+

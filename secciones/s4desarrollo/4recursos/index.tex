@@ -11,14 +11,47 @@ Pese a que su gran popularidad es por el desarrollo Android, ahora está crecien
     \subsection{Ktor}
 
 Es un framework que se aprovecha de la usabilidad de Kotlin para el desarrollo de clientes y servidores asíncronos en la implementación de sistemas conectados.
+Este framework será añadido al proyecto a través de la instalación de sus dependencias en gradle a través del fichero \textit{./build.gradle}.
 
     \subsection{Koin DI}
+    \label{Koin}
 
 Koin es un inyector de dependencias compatible con Kotlin, siendo bastante util para poder aplicar el principio de inversión de dependencias en el desarrollo del backend. 
 
 La configuración de este inyector de dependencias es bastante simple, teniendo una sintaxis sencilla y útil en la que únicamente hay que utilizar Kotlin, evitando así los ficheros de configuración en XML que obligan a usar otros tipos de inyectores.
 
 La utilización de este framework será util para poder aislar los casos de uso del sistema, de modo que no tengan dependencia de ninguna otra clase u servicio externo a los casos de uso, aumentando la escalabilidad del sistema y permitiendo una extensibilidad de los casos de uso en un futuro.
+
+Para su utilización, se añaden las dependencias al fichero \textit{./build.gradle}.
+
+Se implementará a través de la instalación de su módulo en el main de la aplicación.
+\begin{lstlisting}
+    // Declare Koin
+    install(Koin) {
+        modules(myModule)
+    }
+\end{lstlisting}
+
+y en el módulo de Koin se indicarán los servicios que serán inyectados.
+\begin{lstlisting}
+// app.di.Module.kt
+
+/**
+ * This module has got the Koin configuration with the declarations of the needed instances.
+ * This instances could be injected now, applying the dependency inversion principle.
+ */
+val myModule = module {
+    single { ConfRepo() as ConfService }
+    single { DeviceRepo() as DeviceService }
+    single { LocationRepo() as LocationService }
+    single { PeopleRepo() as PeopleService }
+    single { TaskRepo() as TaskService }
+    single { UserRepo() as UserService }
+    single { IntentRepo() as IntentsService }
+    single { TokenCtrl() as AuthService }
+}
+\end{lstlisting}
+
 
     \subsection{OAuth 2.0}
     
@@ -38,6 +71,44 @@ Una vez que el usuario ya dispone de los tokens, simplemente tiene que realizar 
 
 Para la implementación de este protocolo utilizaremos un framework adaptado a la lógica de Ktor. \textbr{MYNDOCS*******}
 Este framework será adaptado a las características de uso del sistema, estableciendo el método de comprobación de credenciales que se considere oportuno, pudiendo variar en caso de que las credenciales correspondan con las de un dispositivo, o con las de un administrador del sistema.
+
+\begin{enumerate}
+    \item Añadir sus dependencia al fichero \textit{./build.gradle}.
+    \item La adaptación de sus clases de identificadores y tienda de tokens con el fin de poder hacer una comprobación de credenciales y autenticar los tokens como requiera el sistema. Para ello, se han modificado dos clases: \textbf{InMemoryTokenStoreCustom} y \textit{InMemoryIdentityCustom}, las cuales se albergan en \textit{./app/oauth}.
+    \item Instalación del servidor OAuth2.0 en nuestra aplicación.
+    Dentro de \textit{./app/Application.kt}, instalamos el servidor:
+
+    \begin{lstlisting}
+        // instance of tokenStore manage tokens
+        tokenStore = InMemoryTokenStoreCustom.get()
+        
+        // Install and configure the OAuth2 server
+        install(Oauth2ServerFeature) {
+            identityService = InMemoryIdentityCustom()
+            clientService = InMemoryClient()
+                .client {
+                    clientId = Credentials.OAUTH_CLIENTID.value
+                    clientSecret = Credentials.OAUTH_CLIENTSECRET.value
+                    // client uri
+                    redirectUris = setOf("uri/to/login")
+                    // set access token to half an hour
+                    accessTokenConverter = UUIDAccessTokenConverter(60*30)
+                    // set refresh token to one week
+                    refreshTokenConverter = UUIDRefreshTokenConverter(60*60*24*7)
+                    authorizedGrantTypes = setOf(
+                        AuthorizedGrantType.AUTHORIZATION_CODE,
+                        AuthorizedGrantType.PASSWORD,
+                        AuthorizedGrantType.IMPLICIT,
+                        AuthorizedGrantType.REFRESH_TOKEN
+                    )
+                }
+            // set the custom store to have access -> Singleton Pattern
+            tokenStore = InMemoryTokenStoreCustom.get()
+        }
+    \end{lstlisting}
+\end{enumerate}
+
+
 
     \subsection{Exposed SQL}
 
