@@ -1,0 +1,23 @@
+Snips Seeed es una  plataforma de inteligencia artificial para el desarrollo de dispositivos asistentes.
+
+Esta plataforma nos permite crear nuestro propio asistente basándose en un entrenamiento previo con unos hechos predefinidos por el desarrollador.
+
+En ese entrenamiento previo, se permite al asistente tomar lo aprendido de otros skills, que son fáciles de añadir.
+
+Tras la implementación en el dispositivo físico, el asistente ya ha sido entrenado, por lo cual no necesitaría volver a estar conectado a internet, siendo este el mayor argumento a favor ya que es la carencia del resto de asistentes.
+
+En cuanto a su uso, el dispositivo solamente se mantiene a la espera de poder recibir el \textit{hotword}. Este hotword puede ser modificado por cualquier otra palabra que se desee, lo cual beneficia al proyecto actual con la posibilidad de asignar una palabra más acorde y familiar a las personas a quienes va orientado.
+
+El asistente, en cuanto a su configuración interna, sigue el protocolo de comunicación descrito en la figura \ref{fig:humasseq}, con una pequeña modificación:
+Cuando el servidor ya ha entendido la pregunta o solicitud, genera unos hechos definidos en su entrenamiento en forma de objeto que envía a través de un puerto MQTT, y se queda a la espera de una respuesta.
+
+Los otros skills, que han sido añadidos previamente en el entrenamiento, están levantados escuchando por el puerto, de manera que identifican los objetos que circulan por él y comprueban si ese hecho le corresponde, que de no ser así, simplemente lo ignoran.
+Una vez que un skill captura un hecho que sí que le corresponde, comprueba los \textit{slots} que contiene dicho hecho para ver qué es lo que se está solicitando. Tras esto, genera una respuesta en forma de cadena de texto, y la envía por el puerto MQTT para que la recoja el \textit{skill-server}.
+
+Una vez capturada por este, simplemente transcribe el mensaje a audio con su skill de text-to-speech, y se lo transmite al usuario a través del altavoz, finalizando la comunicación.
+
+Como se puede ver, el tratamiento de la información que se le otorga al dispositivo es el que nosotros deseemos, ya que el asistente no envia nada al exterior. De esta manera, nosotros controlamos qué sucede con la información, siendo el otro punto requerido en la búsqueda de un asistente ideal.
+
+Como extra, Snips Seeed es una plataforma gratuita que se basa en una colaboración de una gran comunidad de desarrolladores. Pese a ser esta comunidad de menor tamaño que la conseguida por la opción de Mycroft, hay una gran cantidad de aplicaciones disponibles como juegos, la consulta del tiempo o la consulta de noticias, preparadas para ser asignadas directamente a nuestro dispositivo.
+
+Como se puede ver, SnipsSeeed otorga las herramientas necesarias para cumplir todos los requisitos estipulados anteriormente, siendo la plataforma que se pone a la cabeza como posible elección.

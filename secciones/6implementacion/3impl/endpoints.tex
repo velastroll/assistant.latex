@@ -1,0 +1,468 @@
+Los end-points del sistema se van a diferenciar en dos tipos: los habilitados para el dispositivo, que comienzan por \textit{/device}, y los habilitados para el administrador , que comienzan por \textit{/worker}.
+
+De esta manera, el sistema validará el token recibido en la petición, obteniendo qué tipo de usuario es, y sólo dejará acceder al recurso si el usuario es del tipo correcto para esa llamada.
+
+Todas las llamadas, excepto las de inicio de sesión y de refresco de credenciales, deberán contener el token de acceso como parámetro del header.
+
+En cuanto a las posibles respuestas para las llamadas, hay 3 respuestas prestablecidas:
+\begin{enumerate}
+    \item HttpStatusCode 401 : Unauthorized.\newline
+    Se da cuando los credenciales introducidos en el inicio de sesión no son correctos, o cuando el token de acceso no sea válido, ya sea por haberse expirado, por ser falso o por ser de un tipo de usuario no permitido para esa llamada.
+    
+    \item Http Status Code 400 : Bad Request.\newline
+    Se va a obtener cuando los datos introducidos en la llamada no son válidos, ya falte algún parámetro en el formulario, o no cumplan con las especificaciones.
+    
+    \item Http Status Code 500 : Internal Server Error.\newline
+    Será devuelto cuando la llamada haya sido completamente correcta, pero el procesado de ella haya dado con algún tipo de error en el lado del servidor. En este caso, se deberá contactar con el administrador del BackEnd.
+    
+\end{enumerate}
+
+%%%%
+\textbf{[POST] \textit{/device/login }}
+\textit{Inicio de sesión con un dispositivo.}
+
+    Parámetros de la llamada:
+    \begin{lstlisting}[language=json,firstnumber=1]
+        "user" : "mac"
+        "password" : "encrypted mac"
+    \end{lstlisting}
+    
+    RESPONSE:\newline
+        \textit{Http Status Code 200 : Ok}
+        
+    \begin{lstlisting}[language=json,firstnumber=1]
+    {
+        "access_token" : "Bearer lo-que-sea-de-acceso",
+        "refresh_token" : "Bearer lo-que-sea-de-refresco"
+    }
+    \end{lstlisting}    
+\newpage
+%%%%
+\textbf{[GET] \textit{/device/alive }}
+\textit{Envío de ping de dispositivo.}
+    
+    RESPONSE:\newline
+    \textit{Http Status Code 200 : Ok}
+    
+    \begin{lstlisting}[language=json,firstnumber=1]
+    {"status": 200, "action": "ALIVE"}
+    \end{lstlisting}
+    \textit{Http Status Code 300 : Multiple Choices}
+    
+    \begin{lstlisting}[language=json,firstnumber=1]
+    JSONarray<Task>
+    \end{lstlisting}
+\hline 
+\newline
+%%%%
+\textbf{[GET] \textit{/device/tasks/:id/doing }}
+\textit{Aviso de ir a realizar una tarea, especificando su identificador.}
+    
+    RESPONSE: \newline
+    \textit{Http Status Code 200 : Ok}
+    
+    \begin{lstlisting}[language=json,firstnumber=1]
+    {"status": 200, "action": "ALIVE"}
+    \end{lstlisting}
+\hline 
+\newline
+%%%%
+\textbf{[GET] \textit{/device/confs }}
+\textit{Devuelve la configuración más actual del dispositivo.}
+    
+    RESPONSE: \newline
+    \textit{Http Status Code 200 : Ok}
+    
+    \begin{lstlisting}[language=json,firstnumber=1]
+    JSON<ConfData>
+    \end{lstlisting}
+\hline 
+\newline
+%%%%
+\textbf{[GET] \textit{/device/confs/:timestamp }}
+\textit{Aviso del dispositivo de haber instalado la configuración que tiene un timestamp concreto.}
+
+    RESPONSE: \newline
+    \textit{Http Status Code 200 : Ok}
+    
+    \begin{lstlisting}[language=json,firstnumber=1]
+    Configuration has been updated on device.
+    \end{lstlisting}
+\hline
+%%%%
+\textbf{[POST] \textit{/device/intents }}
+\textit{Aviso del dispositivo de haber realizado una conversación con el usuario, enviando los datos básicos.}
+
+    BODY:
+    \begin{lstlisting}[language=json,firstnumber=1]
+    JSON<IntentDone>
+    \end{lstlisting}
+    
+    RESPONSE: \newline
+    \textit{Http Status Code 200 : Ok}
+    
+\newpage %% NEW PAGE
+
+Entre todas las llamadas, hay dos que no corresponden ni están limitadas al tipo de dispositivo, permitiendo que todo token activo sea valido para acceder al recurso, y son las siguientes:
+
+%%%%
+\textbf{[GET] \textit{/auth/refreshtoken }}
+\textit{End-point para actualizar los tokens.}
+
+    BODY:
+    \begin{lstlisting}[language=json,firstnumber=1]
+    {
+        "refresh_token" : "Bearer lo-que-sea-de-refresco"
+    }
+    \end{lstlisting}    
+
+    RESPONSE: \newline
+    \textit{Http Status Code 200 : Ok}
+    
+    \begin{lstlisting}[language=json,firstnumber=1]
+    {
+        "access_token" : "Bearer nuevo-de-acceso",
+        "refresh_token" : "Bearer nuevo-de-refresco"
+    }
+    \end{lstlisting}
+\hline 
+\newline
+%%%%
+\textbf{[GET] \textit{/towns/SANVICENTEDELPALACIO }}
+\textit{Recibe información acerca de una localidad en concreto. De momento solo está configurado para obtener la información relativa a la localidad de San Vicente del Palacio.}
+    
+    RESPONSE: \newline
+    \textit{Http Status Code 200 : Ok}
+    \begin{lstlisting}[language=json,firstnumber=1]
+    {
+        "status" : 200,
+        "action" : "Alive",
+        "data" : {
+            "data" : JSONarray<Place>
+        }
+    }
+    \end{lstlisting}
+
+\newpage %%% NEW PAGE
+%%%%
+\textbf{[POST] \textit{/worker/events }}
+\textit{Crea un nuevo tipo de evento asignable a dispositivos.}
+    
+    BODY:
+   \begin{lstlisting}[language=json,firstnumber=1]
+    {
+        "name" : "REBOOT",
+        "content" : "Campo disponible"
+    }
+    \end{lstlisting} 
+    
+    RESPONSE: \newline
+    \textit{Http Status Code 200 : Ok}
+    \begin{lstlisting}[language=json,firstnumber=1]
+    Added
+    \end{lstlisting}
+\hline \newline
+%%%%
+\textbf{[GET] \textit{/worker/events }}
+\textit{Obtiene todos los tipos de eventos asignables a dispositivos.}
+
+    RESPONSE: \newline
+    \textit{Http Status Code 200 : Ok}
+    \begin{lstlisting}[language=json,firstnumber=1]
+    JSONarray<Event>
+    \end{lstlisting}
+\hline \newline
+%%%%
+\textbf{[POST] \textit{/worker/task }}
+\textit{Asigna una tarea a un dispositivo concreto.}
+
+    BODY:
+   \begin{lstlisting}[language=json,firstnumber=1]
+    {
+        "device" : "Direccion MAC" || "codigo postal" || "GLOBAL",
+        "event" : "REBOOT"
+    }
+    \end{lstlisting} 
+    
+    RESPONSE: \newline
+    \textit{Http Status Code 200 : Ok}
+    \begin{lstlisting}[language=json,firstnumber=1]
+    Added.
+    \end{lstlisting}
+\hline \newline
+
+%%%%
+\newpage
+\textbf{[POST] \textit{/worker/tasks }}
+\textit{Recibe las tareas asignadas a un dispositivo contreto en un periodo de tiempo.}
+
+    BODY:
+   \begin{lstlisting}[language=json,firstnumber=1]
+    {
+        "device" : "Direccion MAC" || "codigo postal" || "GLOBAL",
+        "from" : "YYYY-MM-DDTHH:MM:SSZ" || null,
+        "to" : "YYYY-MM-DDTHH:MM:SSZ" || null
+    }
+    \end{lstlisting} 
+    
+    RESPONSE: \newline
+    \textit{Http Status Code 200 : Ok}
+    \begin{lstlisting}[language=json,firstnumber=1]
+    JSONarray<Event>
+    \end{lstlisting}
+\hline \newline
+
+%%%%
+\textbf{[POST] \textit{/worker/confs }}
+\textit{Recibe las tareas asignadas a un dispositivo contreto en un periodo de tiempo.}
+
+    BODY:
+   \begin{lstlisting}[language=json,firstnumber=1]
+    {   "device" : "Direccion MAC" || "codigo postal" || "GLOBAL",
+        "body" : JSON<ConfBody>   }
+    \end{lstlisting} 
+    
+    RESPONSE: \newline
+    \textit{Http Status Code 200 : Ok}
+    \begin{lstlisting}[language=json,firstnumber=1]
+    Added new configuration
+    \end{lstlisting}
+\hline \newline
+
+%%%%
+\textbf{[GET] \textit{/worker/confs/:id }}
+\textit{Recibe todas las configuraciones posibles. Si el identificador es de un dispositivo, trata de recuperar la asignada al dispositivo, la pendiente de ser instalada, la de su localidad, y la global. Si el identificador es el código postal de una localidad, obtiene la de la localidad y la global, y si el identificador indica "GLOBAL", pues solo recupera la global.}
+    
+    RESPONSE: \newline
+    \textit{Http Status Code 200 : Ok}
+    \begin{lstlisting}[language=json,firstnumber=1]
+    {
+        "global" : ConfData || null,
+        "location" : ConfData || null,
+        "deviceConf" : ConfData || null,
+        "pendingConf" : ConfData || null,
+    }
+    \end{lstlisting}
+
+\newpage %%% new page
+\textbf{[GET] \textit{/worker/devices }}
+\textit{Obtiene la lista con todos los dispositivos con su información de últimos estados, actividades, y demás.}
+    
+    RESPONSE: \newline
+    \textit{Http Status Code 200 : Ok}
+    \begin{lstlisting}[language=json,firstnumber=1]
+    [{
+        "device" : "mac",
+        "last_status" : [{
+                "type" : "REBOOT",
+                "timestamp" : "YYYY-MM-DDTHH:MM:SSZ"
+            }] || null,
+        "last_events" : JSONarray<Event4W> || null,
+        "last_intent" : JSON<Intent4W> || null,
+        "relation" : JSON<Relation> || null,
+        "pending" : JSONarray<Task> || null
+    }]
+    \end{lstlisting}
+\hline
+
+%%%%
+\textbf{[POST] \textit{/worker/devices/:id/intents }}
+\textit{Recibe la actividad de un dispositivo en un periodo de tiempo.}
+
+    BODY:
+   \begin{lstlisting}[language=json,firstnumber=1]
+    {   "from" : "YYYY-MM-DDTHH:MM:SSZ" || null,
+        "to" : "YYYY-MM-DDTHH:MM:SSZ" || null   }
+    \end{lstlisting} 
+    
+    RESPONSE: \newline
+    \textit{Http Status Code 200 : Ok}
+    \begin{lstlisting}[language=json,firstnumber=1]
+    [{
+        "device" : "mac",
+        "datetime" : "YYYY-MM-DDTHH:MM:SSZ",
+        "data" : JSON<IntentData>,
+        "slots" : JSONarray<SlotData>
+    }]
+    \end{lstlisting}
+\hline \newline
+
+%%%%
+\textbf{[POST] \textit{/worker/towns }}
+\textit{Añade una nueva localidad al sistema.}
+
+    BODY:
+   \begin{lstlisting}[language=json,firstnumber=1]
+    {   "name" : "Laguna de Duero",
+        "postcode" : 47140,
+        "latitude" : 41.585467,
+        "longitude" :  -4.725943
+    }
+    \end{lstlisting} 
+    
+    RESPONSE: \newline
+    \textit{Http Status Code 200 : Ok}
+    \begin{lstlisting}[language=json,firstnumber=1]
+    Town Laguna de Duero successfully added.
+    \end{lstlisting}
+\hline \newline
+
+%%%
+\textbf{[GET] \textit{/worker/towns }}
+\textit{Obtiene todas las localidades del sistema.}
+    
+    RESPONSE: \newline
+    \textit{Http Status Code 200 : Ok}
+    \begin{lstlisting}[language=json,firstnumber=1]
+    [{
+        "code" : 47,
+        "name" : Valladolid,
+        "locations" : [{
+            "name" : "Laguna de Duero",
+            "postcode" : 47140,
+            "latitude" : 41.585467,
+            "longitude" :  -4.725943
+        }]
+    }]
+    \end{lstlisting}
+\hline
+
+%%%
+\textbf{[GET] \textit{/worker/towns/:postalcode }}
+\textit{Obtiene una localidad específica a través de su código postal.}
+    
+    RESPONSE: \newline
+    \textit{Http Status Code 200 : Ok}
+    \begin{lstlisting}[language=json,firstnumber=1]
+    {
+        "name" : "Laguna de Duero",
+        "postcode" : 47140,
+        "latitude" : 41.585467,
+        "longitude" :  -4.725943
+    }
+    \end{lstlisting}
+\hline
+
+%%%%
+\textbf{[POST] \textit{/worker/relations }}
+\textit{Asigna un dispositivo a un usuario.}
+
+    BODY:
+   \begin{lstlisting}[language=json,firstnumber=1]
+    {   "nif" : "124232xxG",
+        "device" : "mac"
+    }
+    \end{lstlisting} 
+    
+    RESPONSE: \newline
+    \textit{Http Status Code 200 : Ok}
+    \begin{lstlisting}[language=json,firstnumber=1]
+    Added relation.
+    \end{lstlisting}
+ \newline
+
+%%%%
+\textbf{[DELETE] \textit{/worker/relations/:device }}
+\textit{Elimina la relación que tiene actualmente el dispositivo especificado.}
+    
+    RESPONSE: \newline
+    \textit{Http Status Code 200 : Ok}
+    \begin{lstlisting}[language=json,firstnumber=1]
+    Finished relation.
+    \end{lstlisting}
+\hline \newline
+
+%%%%
+\textbf{[GET] \textit{/worker/relations/:device }}
+\textit{Obtiene la última relación de un dispositivo específico.}
+    
+    RESPONSE: \newline
+    \textit{Http Status Code 200 : Ok}
+    \begin{lstlisting}[language=json,firstnumber=1]
+    {
+        "device" : "mac",
+        "user" : JSON<Person>,
+        "from" : "YYYY-MM-DDTHH:MM:SSZ",
+        "to" : "YYYY-MM-DDTHH:MM:SSZ" || null,
+        "position" : {"lat" : 41.123, "lon": -4.56} || null,
+        "info" : "information" || null
+    }
+    \end{lstlisting}
+\hline \newline
+
+%%%%
+\textbf{[GET] \textit{/worker/relations/:device }}
+\textit{Obtiene la última relación de un dispositivo específico.}
+    
+    RESPONSE: \newline
+    \textit{Http Status Code 200 : Ok}
+    \begin{lstlisting}[language=json,firstnumber=1]
+    {
+        "device" : "mac",
+        "user" : JSON<Person>,
+        "from" : "YYYY-MM-DDTHH:MM:SSZ",
+        "to" : "YYYY-MM-DDTHH:MM:SSZ" || null,
+        "position" : {"lat" : 41.123, "lon": -4.56} || null,
+        "info" : "information" || null
+    }
+    \end{lstlisting}
+
+\newpage %%%% NEW PAGE
+%%%%
+    \textbf{[POST] \textit{/worker/login }}
+\textit{Inicio de sesión de un administrador.}
+    
+    BODY:
+   \begin{lstlisting}[language=json,firstnumber=1]
+    {   
+        "user" : "admin",
+        "password" : "La-Que-Sea-2020"
+    }
+    \end{lstlisting} 
+    
+    RESPONSE: \newline
+    \textit{Http Status Code 200 : Ok}
+    \begin{lstlisting}[language=json,firstnumber=1]
+    {
+        "access_token" : "Bearer lo-que-sea-de-acceso",
+        "refresh_token" : "Bearer lo-que-sea-de-refresco"
+    }
+    \end{lstlisting}
+\hline \newline
+
+
+%%%%
+    \textbf{[POST] \textit{/worker/person }}
+\textit{Añade nuevo cliente al sistema.}
+    
+    BODY:
+   \begin{lstlisting}[language=json,firstnumber=1]
+    {   
+        "name" : "Alvaro",
+        "surname" : "Velasco",
+        "nif" : "124232xxG",
+        "postcode" : "47140"
+    }
+    \end{lstlisting} 
+    
+    RESPONSE: \newline
+    \textit{Http Status Code 200 : Ok}
+    
+    \newline
+    
+\hline \newline
+
+%%%%
+    \textbf{[GET] \textit{/worker/people }}
+\textit{Obtener todos los clientes del sistema.}
+
+    RESPONSE: \newline
+    \textit{Http Status Code 200 : Ok}
+    \begin{lstlisting}[language=json,firstnumber=1]
+    [{   
+        "name" : "Alvaro",
+        "surname" : "Velasco",
+        "nif" : "124232xxG",
+        "postcode" : "47140"
+    }]
+    \end{lstlisting} 

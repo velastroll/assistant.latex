@@ -1,0 +1,22 @@
+La instalación del software en el dispositivo podrá ser flasheando una imagen con el sistema operativo y el asistente ya cargado.
+
+La guía por tanto, no entrará en ese apartado ino en la posibilidad de instalar el asistente en cualquier dispositivo que disponga de una arquitectura Unix.
+
+Para ello, se introducirá el repositorio \textbf{assistant.task} en el dispositivo, dentro del directorio \text y aprovechando los scripts contenidos en él, se instalará todo lo necesario.
+
+\begin{enumerate}
+    \item Acceso al repositorio:
+    
+        \begin{lstlisting}[language=bash]
+            $ cd /home/pi/assistant.task
+        \end{lstlisting}
+    
+    \item Instalacción de dependencias
+    
+        \begin{lstlisting}[language=bash]
+            $ sh requirements.sh
+        \end{lstlisting}
+    
+\end{enumerate}
+
+Tras la ejecucción del script ya se instalan las dependencias requeridas y se configura el inicio automático del controlador remoto del asistante en cada reinicio de la máquina.

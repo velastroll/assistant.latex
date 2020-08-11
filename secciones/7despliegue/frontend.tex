@@ -1,0 +1,16 @@
+Como ya se ha mencionado en numerosas ocasiones, el front end está elaborado con VueJS, el cual está integrado con el módulo de pacquetes de Node, también conocido como \textbf{npm}.
+Esto nos permite la compresión de la totalidad del proyecto en tan solo clases html, css y javascript, además de los archivos de recursos como pueden ser las imágenes.
+
+Para la realización de esta compresión tan solo hay que acceder a la carpeta del repositorio y ejecutar:
+
+    \begin{lstlisting}[language=bash]
+        $ npm run build
+    \end{lstlisting}
+    
+    Lo cual generará una carpeta en el mismo repositorio llamada \textbf{dist}.
+    
+    El despliegue del front end se realizará por tanto copiando el contenido de esta carpeta y pegándolo dentro del servidor apache, que en el caso habitual se encuentra en la siguiente ruta:
+    
+    \textit{/var/www/html}
+    
+    y siendo accesible por tanto a través del puerto 80 de la ubicación de nuestro servidor.

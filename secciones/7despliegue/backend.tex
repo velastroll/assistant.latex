@@ -1,0 +1,107 @@
+Para el despliegue correcto del Back End es necesario seguir las siguientes pautas por el orden que marca la guía:
+
+\subsubsection{Instalación de la base de datos}
+    Para la base de datos se utilizará PostgreSQL, como se ha nombrado en la sección \ref{postgresql}.
+    Esta base de datos puede ser sustituida por cualquier otra, como puede ser MySQL, pero deberá ser una base de datos relacional.
+    
+    Para ello, nos conectamos desde la máquina la cual hará de servidor, y seguimos los pasos:
+    \begin{enumerate}
+        \item Se obtienen los certificados:
+            \begin{lstlisting}[language=bash]
+        $ sudo apt-get install wget ca-certificates
+            \end{lstlisting}
+        
+        \item Se añade la clave de postgresql:
+            \begin{lstlisting}[language=bash]
+        $ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+            \end{lstlisting}
+        
+        \item Se configura:
+            \begin{lstlisting}[language=bash]
+        $ sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+            \end{lstlisting}
+            
+        \item Se actualiza:
+            \begin{lstlisting}[language=bash]
+        $ sudo apt-get update
+            \end{lstlisting}
+            
+        \item Se instala postgresql:
+            \begin{lstlisting}[language=bash]
+        $ sudo apt-get install postgresql postgresql-contrib
+            \end{lstlisting}
+            
+        \item Se crea la base de datos:
+        
+            Para ello, nos conectamos al usuario de postgres
+            \begin{lstlisting}[language=bash]
+        $ sudo su - postgres
+            \end{lstlisting}
+            Y accedemos a postreSQL:
+            \begin{lstlisting}[language=bash]
+        $ psql
+            \end{lstlisting}
+            
+            Una vez dentro, se crea la base de datos, que en este caso se va a llamar \textit{assistant}, a la que podemos acceder tecleando simplemente su nombre.
+            La creación de las tablas se va a dejar a Kotlin y a su framework Exposed, para evitar fallos en algún tipo de dato o una mala relación de claves.
+            \begin{lstlisting}[language=bash]
+        postgres@psql> CREATE DATABASE assistant;
+            \end{lstlisting}
+            
+            Con esto sería suficiente, pero para proporcionar seguridad se procede al cambio de contraseña del usuario de postgres:
+            \begin{lstlisting}[language=bash]
+        postgres@psql> ALTER USER postgres PASSWORD 'nueva_contraseña';
+            \end{lstlisting}
+            
+    \end{enumerate}
+    
+    Es muy importante recordar la contraseña, ya que es necesario utilizarla posteriormente en el despliegue del backend para permitir su acceso. Para el despliegue temporal, la contraseña utilizada será: \textbf{cu4lquie.Rar}
+    
+    En este punto, la base de datos ya estaría disponible para la conexión desde dentro del servidor, localizándola en el \textbf{puerto 5432}.
+
+\subsubsection{Configuración y despliegue del backend}
+
+    Para su despliegue de prueba, únicamente es necesaria la localización del archivo \textbf{JAR} y su colocación dentro del servidor en el directorio \textit{/home/assistant/core}. Este paso no es relevante, pero es recomendable para una correcta localización del archivo, ya que los logs del sistema se almacenarán y archivarán en una carpeta contenedora de esa ruta, de modo que todo se tendría mejor ordenado.
+    
+    Una vez con el fichero en esa ruta, tan solo se tiene que acceder a ese directorio y ejecutar el archivo:
+    \begin{lstlisting}[language=bash]
+        $ cd /home/assistant/core
+        $ java -jar assistant.core.jar
+    \end{lstlisting}
+    
+    Desplegado de esta manera se podría visualizar los logs del sistema en tiempo real, pero con el impedimento de que no se podría cerrar la consola. Para evitar este problema, se puede ejecutar de la siguiente manera, ocultando las salidas con el comando \textbf{nohup} y estableciéndolo en segundo plano con el símbolo \textbf{\&}
+        \begin{lstlisting}[language=bash]
+        $ cd /home/assistant/core
+        $ nohup java -jar assistant.core.jar &
+    \end{lstlisting}
+    
+    En caso de querer finalizar la ejecucción, tan solo habría que finalizar el proceso. Para ello obtenemos la lista de procesos:
+    
+    \begin{lstlisting}[language=bash]
+        $ ps -ef | grep java
+    \end{lstlisting}
+    
+    Lo que nos mostraría la lista de procesos java ejecutados en la máquina, de donde se puede ver el número de proceso que corresponde a nuestro backend, y se eliminaría de la siguiente forma:
+
+    \begin{lstlisting}[language=bash]
+        $ kill -9 numerodeproceso
+    \end{lstlisting}
+    
+    El acceso al sistema desplegado de prueba podría darse a través de las credenciales de un administrador, las cuales tendrían un usuario llamado \textbf{admin}, al que le corresponde la contraseña \textbf{seren0314}. 
+    
+    En caso de querer cambiar la configuración por defecto, o los datos de acceso a la base de datos como el usuario y contraseña que se ha mencionado al comienzo de la guía, se deberá cambiar los valores establecidos del proyecto, que estan configurados en el siguiente fichero:
+    
+    \textit{/src/controller/model/util/Credentials.kt}
+    
+    Una vez estos datos hayan sido actualizados, se deberá volver a formar el archivo JAR, por lo que nos ayudaremos de la herramienta de gradle, que será ejecutada desde dentro de la carpeta del repositorio:
+    
+    \begin{lstlisting}[language=bash]
+        $ gradlew shadowJar
+    \end{lstlisting}
+    
+    Tras este comando, se generará \textbf{assistant.core.jar}, el cual está localizado en \textit{./build/lib/}.
+    
+    Una vez el archivo JAR está generado, se repetirían los pasos descritos al principio de la sección donde se ha descrito la posibilidad de un despliegue de prueba.
+    
+    Una vez desplegado, será accesible a través del puerto 8082.
+    

@@ -7,6 +7,8 @@
 \usepackage{fancyvrb}
 \usepackage{fancyhdr}
 \usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{rotating} % rotate figures
 \usepackage{array} % for defining a new column type
 \usepackage{varwidth} % for the varwidth minipage environment
 \newcolumntype{S}{>{\begin{varwidth}{2cm}}c<{\end{varwidth}}}
@@ -17,8 +19,10 @@
 \usepackage{float}
 \usepackage{listings} %% START: Definimos el modo de mostrar codigo
 \usepackage{color}
-\usepackage{bera}% optional: just to have a nice mono-spaced font
+%\usepackage{bera}% optional: just to have a nice mono-spaced font
 \usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage[table,xcdraw]{xcolor}
 \colorlet{punct}{red!60!black}
 \definecolor{background}{HTML}{EEEEEE}
 \definecolor{delim}{RGB}{20,105,176}
@@ -72,7 +76,6 @@
 }
 
 \usepackage[table,xcdraw]{xcolor} % tabla con colores
-
 \setlength{\parskip}{10pt plus 1pt minus 1pt}
  % aqui definimos el encabezado de las paginas pares e impares.
 \rhead[]{}
@@ -153,15 +156,12 @@ Tutor: Vegas, Jesús }
 
 \chapter*{}
 \pagenumbering{Roman} % para comenzar la numeración de paginas en números romanos
-\begin{flushright}
-\textit{%Dedicatoria,\\
-Pequeña dedicatoria.}
-\end{flushright}
+\input{secciones/0pre/dedicatoria}
 
 \chapter*{Agradecimientos} % si no queremos que añada la palabra "Capitulo"
 \addcontentsline{toc}{chapter}{Agradecimientos} % si queremos que aparezca en el índice
 \markboth{AGRADECIMIENTOS}{AGRADECIMIENTOS} % encabezado 
-
+\input{secciones/0pre/agradecimiento}
 % Aquí agradecer
 
 \chapter*{Resumen} % si no queremos que añada la palabra "Capitulo"
@@ -189,46 +189,51 @@ Para el desarrollo de este proyecto se ha utilizado diferentes lenguajes, como K
 \tableofcontents % indice de contenidos
 
 \cleardoublepage
-\addcontentsline{toc}{chapter}{Lista de figuras} % para que aparezca en el indice de contenidos
+\addcontentsline{toc}{chapter}{Lista de Figuras} % para que aparezca en el indice de contenidos
 \listoffigures % indice de figuras
 
 \cleardoublepage
-\addcontentsline{toc}{chapter}{Lista de tablas} % para que aparezca en el indice de contenidos
+\addcontentsline{toc}{chapter}{Lista de Tablas} % para que aparezca en el indice de contenidos
 \listoftables % indice de tablas
 
 \chapter{Introducción}\label{cap.introduccion}
 \pagenumbering{arabic} % para empezar la numeración con números
-\input{./secciones/s1intro/index.tex}
+\input{./secciones/1introduccion/index.tex}
 
-\chapter{Estado del arte}\label{cap.arte}
-\input{./secciones/s2arte/index.tex}
+\chapter{Estado del Arte}\label{cap.arte}
+\input{./secciones/2estadoarte/index.tex}
 
-\chapter{Análisis del proyecto}\label{cap.analisis}
-\input{./secciones/s3analisis/index.tex}
+\chapter{Plan de Desarrollo}\label{cap.desarrollo}
+\input{./secciones/3plandesarrollo/index.tex}
 
-\chapter{Plan de desarrollo}\label{cap.desarrollo}
-\input{./secciones/s4desarrollo/index.tex}
+\chapter{Análisis del Proyecto}\label{cap.analisis}
+\input{./secciones/4analisis/index.tex}
 
 \chapter{Diseño}
 \label{cap.diseño}
-\input{./secciones/s5diseño/index.tex}
+\input{./secciones/5diseño/index.tex}
 
-\chapter{Demo}\label{cap.demo}
-\input{./secciones/s4demo.tex}
+\chapter{Implementación}\label{cap.implementation}
+\input{./secciones/6implementacion/index.tex}
 
-\chapter{Conclusión}\label{cap.conclusion}
-\input{./secciones/s5conclusion.tex}
+\chapter{Despliegue}\label{cap.deploy}
+\input{./secciones/7despliegue/index.tex}
+%\input{./secciones/7despliegue/index.tex}
 
-\chapter{Referencias}\label{cap.referencias}
-\input{./secciones/s6referencias.tex}
+%% escenarios
 
+%\chapter{Referencias}\label{cap.referencias}
+%\input{./secciones/s8referencias.tex}
+
+%CóDIGO DE RECURSOS -> PASARLO A LA IMPLEMENTACIÓN
+%IMPLEMENTACIÓN > DESPLIEGUE > PRUEBAS
 
 \appendix
 
-\chapter{Manual de usuario}\label{aped.A}
-\input{./anexos/a1manual.tex}
-\chapter{Contenidos del CD-ROM}\label{aped.B}
-\input{./anexos/a2cdrom.tex}
+%\chapter{Manual de Usuario}\label{aped.A}
+%\input{./anexos/a1manual.tex}
+%\chapter{Contenidos del CD-ROM}\label{aped.B}
+%\input{./anexos/a2cdrom.tex}
 
 %Esto es una cita: \cite{ej}. Tiene que hacer referencia a la etiqueta de un bibitem.
 
@@ -240,10 +245,103 @@ Para el desarrollo de este proyecto se ha utilizado diferentes lenguajes, como K
 %\renewcommand\bibname{Referencias Web}
 \begin{thebibliography}{X}
 
-\bibitem{ref1} \textit{Ejemplo}, \\
-\textsc{ejemplo.com}.
-\\Recuperado a tal fecha, \\de \href{http://ejemplo.com}
+\bibitem{nielsen}
+\textsc{The Nielsen Company} (2018). \textit{Nielsen: Despite their bast capabilities, smart speakers are all about the music}.
+\\Recuperado a 17 de Enero de 2020, \\de \href{https://www.nielsen.com/us/en/insights/article/2018/smart-speaking-my-language-despite-their-vast-capabilities-smart-speakers-all-about-the-music/}
 
+\bibitem{lopd}
+\textsc{BOE.es} (2019, Junio 25). \textit{Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales}.
+\\Recuperado a 17 de Enero de 2020, \\de \href{https://www.boe.es/buscar/act.php?id=BOE-A-2018-16673}
+
+\bibitem{top-asistentes} 
+\textsc{Laboratorio de Periodismo Luca de Tena} (2019, Octubre 17). \textit{El 42\% de los usuarios de altavoces inteligentes en España escuchan noticias a través de ellos}.
+\\Recuperado a 19 de Enero de 2020, \\de \href{https://laboratoriodeperiodismo.org/altavoces-inteligentes-espana-noticias/}
+
+\bibitem{google-almacena} 
+\textsc{20Minutos} (2016, Junio 5). \textit{Google graba y almacena tu voz: dónde puedes escucharla (y borrarla)}.
+\\Recuperado a 17 de Enero de 2020, \\de \href{https://www.20minutos.es/noticia/2762528/0/google-graba-almacena-tu-voz-donde-como-borrarlo/}
+
+\bibitem{escandalo-amazon} 
+\textsc{Píxel, El Mundo}. (2019, Julio 4) \textit{Escándalo en Amazon: la empresa reconoce que guarda tus conversaciones para siempre}.
+\\Recuperado a 19 de Enero de 2020, \\de \href{https://www.elmundo.es/tecnologia/2019/07/04/5d1ccf42fc6c833f3f8b460d.html}
+
+\bibitem{mycroft-doc}
+\textsc{Mycroft AI} (n.d.). \textit{Documentation}.
+\\Recuperado a 20 de Enero de 2020, \\de \href{https://mycroft-ai.gitbook.io/docs/}
+
+\bibitem{mycroft-com}
+\textsc{Mycroft AI} (n.d.). \textit{Community}.
+\\Recuperado a 20 de Enero de 2020, \\de \href{https://community.mycroft.ai/}
+
+\bibitem{mod-it-inc} 
+\textsc{ProyectosAgiles.com} (n.d.). \textit{Desarrollo iterativo e incremental}.
+\\Recuperado a 22 de Enero de 2020, \\de \href{https://proyectosagiles.org/desarrollo-iterativo-incremental/}
+
+\bibitem{ktor} 
+\textsc{JetBrains}, (n.d.). \textit{Ktor Servers}
+\\Recuperado a 18 de Enero de 2020, \\de \href{https://ktor.io/servers/index.html}
+
+\bibitem{koin} 
+\textsc{InsertKoinIO} (2019, Noviembre 5). \textit{Koin}.
+\\Recuperado a 18 de Enero de 2020, \\de \href{https://github.com/InsertKoinIO/koin#readme}
+
+\bibitem{oauth2} 
+\textsc{OAuth.net} (n.d.). \textit{OAuth 2.0}
+\\Recuperado a 18 de Enero de 2020, \\de \href{https://oauth.net/2/}
+
+\bibitem{endpoint} 
+\textsc{SmartBear.com} (n.d.). \textit{What is an API Endpoint?}
+\\Recuperado a 18 de Enero de 2020, \\de \href{https://smartbear.com/learn/performance-monitoring/api-endpoints/}
+
+\bibitem{myndocs.oauth2} 
+\textsc{Myndocs} (2019, Septiembre 7). \textit{Kotlin OAuth2 server}.
+\\Recuperado a 18 de Enero de 2020, \\de \href{https://github.com/myndocs/kotlin-oauth2-server}
+
+\bibitem{exposedsql} 
+\textsc{JetBrains} (2019, Junio 3). \textit{Exposed SQL DSL}.
+\\Recuperado a 18 de Enero de 2020, \\de \href{https://github.com/JetBrains/Exposed}
+
+\bibitem{jsoup} 
+\textsc{Jonathan H.} (n.d.). \textit{Download and install JSoup}.
+\\Recuperado a 19 de Enero de 2020, \\de \href{https://jsoup.org/download}
+
+\bibitem{vue-curve}
+\textsc{Ben R.} (2019, Diciembre 5). \textit{Vue vs React: Which is the Better Framework?}
+\\Recuperado a 19 de Enero de 2020, \\de \href{https://buttercms.com/blog/vue-vs-react-which-is-the-better-framework}
+
+\bibitem{bootstrap-vue} 
+\textsc{Bootstrap-Vue} (n.d.). \textit{Components}.
+\\Recuperado a 19 de Enero de 2020, \\de \href{https://bootstrap-vue.org/docs/components}
+
+\bibitem{leaflet} 
+\textsc{Leaflet}(n.d.). \textit{An open-source JavaScript library for mobile-friendly interactive maps}.
+\\Recuperado a 19 de Enero de 2020, \\de \href{https://leafletjs.com/reference-1.6.0.html}
+
+\bibitem{hxc} 
+\textsc{Universidad de Valladolid} (n.d.). \textit{Preguntas Frecuentes}.
+\\Recuperado a 21 de Enero de 2020, \\de \href{http://www.uva.es/export/sites/uva/2.docencia/2.02.mastersoficiales/2.02.13.preguntasfrecuentes/index.html}
+
+\bibitem{salario-junior} 
+\textsc{Indeed.com} (2019, Diciembre). \textit{Salarios para empleos de Programador/a junior en España}.
+\\Recuperado a 21 de Enero de 2020, \\de \href{https://es.indeed.com/salaries/programador-junior-Salaries}
+
+\bibitem{spm}  \\
+\textsc{Bob Hughes and Mike Cotterell} (2009). \textit{Software Project Management}. McGraw-Hill Education.
+
+\bibitem{mvvm} 
+\textsc{Jeremy L.} (2014, Abril 24). \textit{Model-View-ViewModel (MVVM) Explained}.
+\\Recuperado a 23 de Enero de 2020, \\de \href{https://www.wintellect.com/model-view-viewmodel-mvvm-explained/}
+
+\bibitem{vuecomp} 
+\textsc{Eder N.} (2017, Octubre 9). \textit{The Vue architecture that worked for me. (in small and large apps)}.
+\\Recuperado a 23 de Enero de 2020, \\de \href{https://medium.com/@ederng/the-vue-architecture-that-worked-for-me-in-small-and-large-apps-9b253cf92951}
+
+\bibitem{crontab} 
+\textsc{Vivek G.} (2019, Julio 19). \textit{Linux Execute Cron Job After System Reboot}.
+\\Recuperado a 24 de Enero de 2020, \\de \href{https://www.cyberciti.biz/faq/linux-execute-cron-job-after-system-reboot/}
+
+\bibitem{clean-arch-book}
+\textsc{Robert C. Martin} (2017). \textit{Clean Architecture: A Craftsman's Guide to Software Structure and Design}. Pearson.
 
 \end{thebibliography}
 
