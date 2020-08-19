@@ -87,8 +87,8 @@
 \cfoot[]{}
 \renewcommand{\footrulewidth}{0pt}
 
-%redefino el verbatim
-%\renewenvironment{verbatim}{\begin{Verbatim}[frame=single,fontsize=\small]}{\end{Verbatim}}
+% Arreglamos el problema de 'Indice de cuadros' por 'Índice de Tablas'
+% \renewcommand{\listoftables}{Índice de Tablas}
 
 % aqui definimos el encabezado y pie de pagina de la pagina inicial de un capitulo.
 \fancypagestyle{plain}{
@@ -141,9 +141,9 @@
 \vspace*{2in}
 \begin{large}
 \begin{flushright}
-\textbf{Alumno: Velasco Gil, Álvaro \\
+\textbf{Alumno: Álvaro Velasco Gil \\
 \vspace*{0.3in}
-Tutor: Vegas, Jesús }
+Tutor: Jesús M. Vegas Hernández }
 \end{flushright}
 \end{large}
 \end{center}
@@ -169,9 +169,17 @@ Tutor: Vegas, Jesús }
 \markboth{RESUMEN}{RESUMEN} % encabezado
 \begin{flushleft}
 
-El fin de este proyecto es el de crear un sistema capaz de monitorizar y controlar remotamente diferentes dispositivos que serán utilizados como asistentes inteligentes.
+Este proyecto se basa en dos grandes motivaciones: la privacidad, y la asistencia de la población envejecida rural.
 
-Para el desarrollo de este proyecto se ha utilizado diferentes lenguajes, como Kotlin en el backend, Python en los dispositivos, y VueJS, HTML y CSS en el frontend, siguiendo un plan basado en iteraciones.
+Con ello, se narra el proceso por el cual ha sido desarollado un proyecto de despliegue de dispositivos, los cuales se comportan como asistentes personales orientados a la población más envejecida y con menos recursos, que notablemente está alojada en poblaciones rurales.
+
+Estos asistentes proporcionarán una ayuda diaria a este grupo social que es el que en realidad puede necesitar de un dispositivo que le ayude a realizar las tareas y responder preguntas comunes, al igual que se tratará de un dispositivo que pueda detectar un posible accidente en el hogar y proporcionar una asistencia inmediata.
+
+Para la realización de este proyecto, por tanto, se requiere la implementación de una API contra la que se comunicará cada dispositivo, al igual que un sitio web para que el administrador del sistema pueda controlarlos. Cada dispositivo estará desplegado remotamente y podrá ser controlado, por lo que en este proyecto también se desarrollará el controlador del dispositivo.
+
+En cuanto al desarrollo se han utilizado diferentes lenguajes, tales como Kotlin con el framework de Ktor para la creación de la API, el framework de VueJS para la creación del sitio web, donde se incluye HTML + CSS + Javascript, al igual que la utilización de Phyton para la creación del controlador que irá instalado en cada dispositivo.
+
+Toda el proyecto ha sido elaborado, dada su naturaleza, siguiendo un plan basado en iteraciones.
 
 % Aquí el resumen
 
@@ -194,7 +202,11 @@ Para el desarrollo de este proyecto se ha utilizado diferentes lenguajes, como K
 
 \cleardoublepage
 \addcontentsline{toc}{chapter}{Lista de Tablas} % para que aparezca en el indice de contenidos
+
+%lista de tablas
+\renewcommand\listtablename{Índice de Tablas}
 \listoftables % indice de tablas
+\clearpage
 
 \chapter{Introducción}\label{cap.introduccion}
 \pagenumbering{arabic} % para empezar la numeración con números
@@ -218,15 +230,8 @@ Para el desarrollo de este proyecto se ha utilizado diferentes lenguajes, como K
 
 \chapter{Despliegue}\label{cap.deploy}
 \input{./secciones/7despliegue/index.tex}
-%\input{./secciones/7despliegue/index.tex}
-
 %% escenarios
 
-%\chapter{Referencias}\label{cap.referencias}
-%\input{./secciones/s8referencias.tex}
-
-%CóDIGO DE RECURSOS -> PASARLO A LA IMPLEMENTACIÓN
-%IMPLEMENTACIÓN > DESPLIEGUE > PRUEBAS
 
 \appendix
 
@@ -235,14 +240,9 @@ Para el desarrollo de este proyecto se ha utilizado diferentes lenguajes, como K
 %\chapter{Contenidos del CD-ROM}\label{aped.B}
 %\input{./anexos/a2cdrom.tex}
 
-%Esto es una cita: \cite{ej}. Tiene que hacer referencia a la etiqueta de un bibitem.
-
-%Esto es un enlace \href{www.enlace.net}{Enlace}
-
 
 \cleardoublepage
 \addcontentsline{toc}{chapter}{Bibliografía}
-%\renewcommand\bibname{Referencias Web}
 \begin{thebibliography}{X}
 
 \bibitem{nielsen}
