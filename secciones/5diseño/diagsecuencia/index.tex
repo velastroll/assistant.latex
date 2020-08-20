@@ -100,9 +100,9 @@ Tras comprobar en el servidor la validez del token con el cual se hace la petici
 
 \subsubsection{Marcar la Configuración de un dispositivo como Actualizada}
 
-La siguiente secuencia representa una de las acciones con mayor complejidad del sistema, ya que poder llevar el registro de cual es la configuración que posee cada dispositivo y a cual es a la que se ha actualizado, teniendo en cuenta que hay 3 posibles configuraciones paralelas, lleva un tedioso trabajo, que una vez clarificado no es dificil de entender.
+La siguiente secuencia representa una de las acciones con mayor complejidad del sistema, ya que poder llevar el registro de cual es la configuración que posee cada dispositivo y a cual es a la que se ha actualizado, teniendo en cuenta que hay 3 posibles configuraciones paralelas, lleva un tedioso trabajo, que una vez clarificado no es difícil de entender.
 
-Partimos de que el dispositivo informa que ha actualizado a la configuracion que posee una marca de tiempo específica.
+Partimos de que el dispositivo informa que ha actualizado a la configuración que posee una marca de tiempo específica.
 
 Entonces, el sistema obtiene las configuraciones globales, locales y propias que corresponden a cada dispositivo y comprueba:
 
@@ -138,7 +138,7 @@ Si la marca de tiempo de la que se va a devolver es más reciente que la que est
 
 \subsection{Relativos a la Interacción de un Administrador}
 
-\subsubsection{Creacción de un nuevo Tipo de Tarea}
+\subsubsection{Creación de un nuevo Tipo de Tarea}
 
 La creación de nuevas tareas en el dispositivo ha sido explicado previamente en el apartado \ref{seq:received300}, pero para poder mandar al dispositivo esa nueva tarea, hay que poder registrarla en el sistema.
 
@@ -149,7 +149,7 @@ En este caso, para diferenciar entre la creación de tipos de tareas y la creaci
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm]{./img/sequence/diagram/AddEvent.png}
-    \caption{Diagrama de secuencia DS08 - Creacción de nuevo tipo de tarea}
+    \caption{Diagrama de secuencia DS08 - Creación de nuevo tipo de tarea}
     \label{fig:seq.NewEvent}
 \end{figure}
 
@@ -190,7 +190,7 @@ En los requisitos funcionales se data la necesidad de un método que permita la 
 \newpage
 \subsubsection{Cambiar Configuración}
 
-El administrador es capaz de cambiar la configuración tanto global, como local o de un disposoitivo específico a través de una llamada a un endpoint del servicio REST del sistema.
+El administrador es capaz de cambiar la configuración tanto global, como local o de un dispositivo específico a través de una llamada a un endpoint del servicio REST del sistema.
 Lo que ocurre en el sistema una vez se realiza la petición es documentado en el siguiente diagrama de secuencia.
 
 \begin{figure}[H]
@@ -222,7 +222,7 @@ Por motivos de seguridad, se ha implementado la obtención de la actividad de un
 
 En caso de que un dispositivo tenga un usuario asociado en el momento de la consulta, los resultados se limitarán a mostrar la actividad de ese dispositivo únicamente con el usuario actual.
 
-De este modo, como se puede observar en el diagrama de secuencia incluído a continuación, se evita la posibilidad de que un usuario acceda a consultas de actividades hechas con el mismo dispositivo por otro usuario, al igual que no permite obtener a los administradores la actividad de un determinado usuario, si el usuario ya no tiene el dispositivo asignado, respetando por tanto la privacidad.
+De este modo, como se puede observar en el diagrama de secuencia incluido a continuación, se evita la posibilidad de que un usuario acceda a consultas de actividades hechas con el mismo dispositivo por otro usuario, al igual que no permite obtener a los administradores la actividad de un determinado usuario, si el usuario ya no tiene el dispositivo asignado, respetando por tanto la privacidad.
 
 \begin{figure}[H]
     \centering

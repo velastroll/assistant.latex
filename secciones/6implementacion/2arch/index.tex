@@ -8,18 +8,18 @@ Para poder mostrar estas pautas se ha implementado un controlador de pruebas, qu
 
 Como se ha nombrado anteriormente, el sistema desarrollado en la parte del servidor deberá servir una API REST, de modo que la arquitectura elegida para la implementación del backend es una arquitectura REST, la cual se basa en ofrecer unos end-points desde los cuales se trata la información almacenada en el sistema.
 
-Para una mejor implementación de esta arquitectura, se estructura el sistema bajo la Clean Architecture, de modo que se permite el desarrollo del sistema en una organización formada por capas, donde el acceso a la siguiente capa es lineal, evitando dependencias cruzadas que perjudiquen la escalabilidad del sistema.
+Para una mejor implementación de esta arquitectura, se estructura el sistema bajo la Clean Architecture~\cite{clean-arch-book}, de modo que se permite el desarrollo del sistema en una organización formada por capas, donde el acceso a la siguiente capa es lineal, evitando dependencias cruzadas que perjudiquen la escalabilidad del sistema.
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=7cm]{./img/arch/cleanarch.png}
-    \caption{The Clean Architecture}
+    \caption{The Clean Architecture, Robert C. Martin~\cite{clean-arch-book}}
     \label{fig:cleanarch}
 \end{figure}
 
 \subsection{FrontEnd}
 
-El sitio web a desarrollar para la administración del sistema se contruye a partir del framework javascript de VueJS, como ya se ha mencionado anteriormente en el apartado \ref{Vue}.
+El sitio web a desarrollar para la administración del sistema se construye a partir del framework javascript de VueJS, como ya se ha mencionado anteriormente en el apartado \ref{Vue}.
 
 VueJS propone una arquitectura MVVM~\cite{mvvm}, en la cual el diseño del sistema se basa en el desarrollo de múltiples componentes: Un componente es una unidad que dispone de su propio sistema de vista-presentador, teniendo una interfaz gráfica implementada en HTML + CSS, que efectúa un comportamiento a través de funciones JavaScript.
 

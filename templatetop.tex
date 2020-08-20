@@ -161,17 +161,16 @@ Tutor: Jesús M. Vegas Hernández }
 \chapter*{Agradecimientos} % si no queremos que añada la palabra "Capitulo"
 \addcontentsline{toc}{chapter}{Agradecimientos} % si queremos que aparezca en el índice
 \markboth{AGRADECIMIENTOS}{AGRADECIMIENTOS} % encabezado 
-\input{secciones/0pre/agradecimiento}
-% Aquí agradecer
+\input{secciones/0pre/agradecimiento} % AGRADECIMIENTOS
 
 \chapter*{Resumen} % si no queremos que añada la palabra "Capitulo"
 \addcontentsline{toc}{chapter}{Resumen} % si queremos que aparezca en el índice
 \markboth{RESUMEN}{RESUMEN} % encabezado
-\begin{flushleft}
+\begin{flushleft} % RESUMEN
 
-Este proyecto se basa en dos grandes motivaciones: la privacidad, y la asistencia de la población envejecida rural.
+Este proyecto es movido dos grandes motivaciones: la privacidad de nuestros datos, y la asistencia de la población envejecida rural.
 
-Con ello, se narra el proceso por el cual ha sido desarollado un proyecto de despliegue de dispositivos, los cuales se comportan como asistentes personales orientados a la población más envejecida y con menos recursos, que notablemente está alojada en poblaciones rurales.
+Con ello, se narra el proceso por el cual ha sido desarrollado un proyecto de despliegue de dispositivos, los cuales se comportan como asistentes personales orientados a la población más envejecida y con menos recursos, que notablemente está alojada en poblaciones rurales.
 
 Estos asistentes proporcionarán una ayuda diaria a este grupo social que es el que en realidad puede necesitar de un dispositivo que le ayude a realizar las tareas y responder preguntas comunes, al igual que se tratará de un dispositivo que pueda detectar un posible accidente en el hogar y proporcionar una asistencia inmediata.
 
@@ -181,16 +180,24 @@ En cuanto al desarrollo se han utilizado diferentes lenguajes, tales como Kotlin
 
 Toda el proyecto ha sido elaborado, dada su naturaleza, siguiendo un plan basado en iteraciones.
 
-% Aquí el resumen
-
 \end{flushleft}
 
 \chapter*{Abstract} % si no queremos que añada la palabra "Capitulo"
 \addcontentsline{toc}{chapter}{Abstract} % si queremos que aparezca en el índice
 \markboth{ABSTRACT}{ABSTRACT} % encabezado
-\begin{flushleft}
+\begin{flushleft} % ABSTRACT
 
-% Aquí va el abstract
+This project is moved by two great motivations: privacy and the assistance of the ageing rural population. 
+
+Based on that, it narrates the process by which a project has been developed to deploy devices, which behave as personal assistants aimed at the older population with fewer resources, which is notably housed in rural populations. 
+
+These assistants will provide a daily help to this social group, which is actually the one that may need a device that helps them undertake their tasks, as well as answering common questions. The device will also be able to detect a possible accident at home and provide immediate assistance. 
+
+Therefore, in order to create this project, the implementation of an API that each device will be communicated with will be required, in addition to a website that allows the system administrator to control them. Each device will be remotely deployed and can be controlled. Consequently, in this project, the device controller will also be developed. 
+
+Regarding to the development, different languages have been used, such as Kotlin with Ktor’s framework for the API creation, VueJS’ framework for the creation of the website where HTML + CSS + Javascript is included, as well as the use of Phyton for the creation of the controller that will be installed in each device. 
+
+The whole project has been elaborated, due to its nature, following a plan based on iterations.
 
 \end{flushleft}
 
@@ -245,13 +252,24 @@ Toda el proyecto ha sido elaborado, dada su naturaleza, siguiendo un plan basado
 \addcontentsline{toc}{chapter}{Bibliografía}
 \begin{thebibliography}{X}
 
+\bibitem{cambridge}
+\textsc{Javier P.} (2018, Abril 10). \textit{Xataka: El escándalo de Cambridge Analytica resume todo lo que está terriblemente mal con Facebook}.
+\\Recuperado a 16 de Enero de 2020, \\de \href{https://www.xataka.com/privacidad/el-escandalo-de-cambridge-analytica-resume-todo-lo-que-esta-terriblemente-mal-con-facebook}
+
 \bibitem{nielsen}
-\textsc{The Nielsen Company} (2018). \textit{Nielsen: Despite their bast capabilities, smart speakers are all about the music}.
-\\Recuperado a 17 de Enero de 2020, \\de \href{https://www.nielsen.com/us/en/insights/article/2018/smart-speaking-my-language-despite-their-vast-capabilities-smart-speakers-all-about-the-music/}
+\textsc{The Nielsen Company} (2018). \textit{Nielsen: Despite their vast capabilities, smart speakers are all about the music}.
+\\Recuperado a 17 de Enero de 2020, 
+\\de \href{https://www.nielsen.com/us/en/insights/article/2018/smart-speaking-my-language-despite-their-vast-capabilities-smart-speakers-all-about-the-music/}
 
 \bibitem{lopd}
 \textsc{BOE.es} (2019, Junio 25). \textit{Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales}.
-\\Recuperado a 17 de Enero de 2020, \\de \href{https://www.boe.es/buscar/act.php?id=BOE-A-2018-16673}
+\\Recuperado a 17 de Enero de 2020, 
+\\de \href{https://www.boe.es/buscar/act.php?id=BOE-A-2018-16673}
+
+\bibitem{rgpd}
+\textsc{Parlamento Europeo} (2016, Mayo 25). \textit{RGPD - Reglamento General de Protección de Datos}.
+\\Recuperado a 17 de Enero de 2020, 
+\\de \href{https://rgpd.es/}
 
 \bibitem{top-asistentes} 
 \textsc{Laboratorio de Periodismo Luca de Tena} (2019, Octubre 17). \textit{El 42\% de los usuarios de altavoces inteligentes en España escuchan noticias a través de ellos}.
@@ -259,47 +277,58 @@ Toda el proyecto ha sido elaborado, dada su naturaleza, siguiendo un plan basado
 
 \bibitem{google-almacena} 
 \textsc{20Minutos} (2016, Junio 5). \textit{Google graba y almacena tu voz: dónde puedes escucharla (y borrarla)}.
-\\Recuperado a 17 de Enero de 2020, \\de \href{https://www.20minutos.es/noticia/2762528/0/google-graba-almacena-tu-voz-donde-como-borrarlo/}
+\\Recuperado a 17 de Enero de 2020, 
+\\de \href{https://www.20minutos.es/noticia/2762528/0/google-graba-almacena-tu-voz-donde-como-borrarlo/}
 
 \bibitem{escandalo-amazon} 
 \textsc{Píxel, El Mundo}. (2019, Julio 4) \textit{Escándalo en Amazon: la empresa reconoce que guarda tus conversaciones para siempre}.
-\\Recuperado a 19 de Enero de 2020, \\de \href{https://www.elmundo.es/tecnologia/2019/07/04/5d1ccf42fc6c833f3f8b460d.html}
+\\Recuperado a 19 de Enero de 2020, 
+\\de \href{https://www.elmundo.es/tecnologia/2019/07/04/5d1ccf42fc6c833f3f8b460d.html}
 
 \bibitem{mycroft-doc}
 \textsc{Mycroft AI} (n.d.). \textit{Documentation}.
-\\Recuperado a 20 de Enero de 2020, \\de \href{https://mycroft-ai.gitbook.io/docs/}
+\\Recuperado a 20 de Enero de 2020, 
+\\de \href{https://mycroft-ai.gitbook.io/docs/}
 
 \bibitem{mycroft-com}
 \textsc{Mycroft AI} (n.d.). \textit{Community}.
-\\Recuperado a 20 de Enero de 2020, \\de \href{https://community.mycroft.ai/}
+\\Recuperado a 20 de Enero de 2020, 
+\\de \href{https://community.mycroft.ai/}
 
 \bibitem{mod-it-inc} 
 \textsc{ProyectosAgiles.com} (n.d.). \textit{Desarrollo iterativo e incremental}.
-\\Recuperado a 22 de Enero de 2020, \\de \href{https://proyectosagiles.org/desarrollo-iterativo-incremental/}
+\\Recuperado a 22 de Enero de 2020, 
+\\de \href{https://proyectosagiles.org/desarrollo-iterativo-incremental/}
 
 \bibitem{ktor} 
 \textsc{JetBrains}, (n.d.). \textit{Ktor Servers}
-\\Recuperado a 18 de Enero de 2020, \\de \href{https://ktor.io/servers/index.html}
+\\Recuperado a 18 de Enero de 2020, 
+\\de \href{https://ktor.io/servers/index.html}
 
 \bibitem{koin} 
 \textsc{InsertKoinIO} (2019, Noviembre 5). \textit{Koin}.
-\\Recuperado a 18 de Enero de 2020, \\de \href{https://github.com/InsertKoinIO/koin#readme}
+\\Recuperado a 18 de Enero de 2020, 
+\\de \href{https://github.com/InsertKoinIO/koin#readme}
 
 \bibitem{oauth2} 
 \textsc{OAuth.net} (n.d.). \textit{OAuth 2.0}
-\\Recuperado a 18 de Enero de 2020, \\de \href{https://oauth.net/2/}
+\\Recuperado a 18 de Enero de 2020, 
+\\de \href{https://oauth.net/2/}
 
 \bibitem{endpoint} 
 \textsc{SmartBear.com} (n.d.). \textit{What is an API Endpoint?}
-\\Recuperado a 18 de Enero de 2020, \\de \href{https://smartbear.com/learn/performance-monitoring/api-endpoints/}
+\\Recuperado a 18 de Enero de 2020, 
+\\de \href{https://smartbear.com/learn/performance-monitoring/api-endpoints/}
 
 \bibitem{myndocs.oauth2} 
 \textsc{Myndocs} (2019, Septiembre 7). \textit{Kotlin OAuth2 server}.
-\\Recuperado a 18 de Enero de 2020, \\de \href{https://github.com/myndocs/kotlin-oauth2-server}
+\\Recuperado a 18 de Enero de 2020, 
+\\de \href{https://github.com/myndocs/kotlin-oauth2-server}
 
 \bibitem{exposedsql} 
 \textsc{JetBrains} (2019, Junio 3). \textit{Exposed SQL DSL}.
-\\Recuperado a 18 de Enero de 2020, \\de \href{https://github.com/JetBrains/Exposed}
+\\Recuperado a 18 de Enero de 2020, 
+\\de \href{https://github.com/JetBrains/Exposed}
 
 \bibitem{jsoup} 
 \textsc{Jonathan H.} (n.d.). \textit{Download and install JSoup}.
